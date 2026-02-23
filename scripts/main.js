@@ -2,10 +2,70 @@
 // Navigation Functionality
 // ===================================
 document.addEventListener('DOMContentLoaded', function () {
+    // ===================================
+    // Particles.js Initialization
+    // ===================================
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#6366f1" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#8b5cf6", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 2 } }
+            },
+            "retina_detect": true
+        });
+    }
+
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     const navLinkItems = document.querySelectorAll('.nav-link');
+    const themeToggle = document.getElementById('themeToggle');
+
+    // ===================================
+    // Theme Toggle Logic
+    // ===================================
+    if (themeToggle) {
+        const sunIcon = themeToggle.querySelector('.sun-icon');
+        const moonIcon = themeToggle.querySelector('.moon-icon');
+
+        // Check local storage for theme
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-theme');
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            let theme = 'dark';
+            if (document.body.classList.contains('light-theme')) {
+                theme = 'light';
+                if (sunIcon && moonIcon) {
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                }
+            } else {
+                if (sunIcon && moonIcon) {
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            }
+            localStorage.setItem('theme', theme);
+        });
+    }
 
     // Navbar scroll effect
     let lastScroll = 0;
@@ -44,6 +104,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // ===================================
+    // Scroll Animation Observer
+    // ===================================
+    const scrollElements = document.querySelectorAll('.animate-on-scroll');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // Optional: Stop observing after first animation to keep it visible
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    scrollElements.forEach((el) => fadeObserver.observe(el));
 
     // ===================================
     // Stats Counter Animation
@@ -149,95 +225,95 @@ document.addEventListener('DOMContentLoaded', function () {
     if (photoGrid) {
         const photoData = [
             // Portraits (From POrtrait folder)
-            { src: "POrtrait/IMG_1999.JPG", category: "portrait" },
-            { src: "POrtrait/IMG_20250910_162619946.jpg", category: "portrait" },
-            { src: "POrtrait/IMG_20251211_001621821 (1).jpg", category: "portrait" },
-            { src: "POrtrait/IMG_20251211_001623219.jpg", category: "portrait" },
-            { src: "POrtrait/IMG_20251211_072412702.jpg", category: "portrait" },
-            { src: "POrtrait/IMG_20251211_072415446.jpg", category: "portrait" },
-            { src: "POrtrait/IMG_20251211_072423149.jpg", category: "portrait" },
-            { src: "POrtrait/IMG_20260221_203927442.jpg", category: "portrait" },
-            { src: "POrtrait/IMG_20260221_203935293.jpg", category: "portrait" },
-            { src: "POrtrait/IMG_2040.JPG", category: "portrait" },
-            { src: "POrtrait/IMG_2161.JPG", category: "portrait" },
-            { src: "POrtrait/IMG_2209.JPG", category: "portrait" },
-            { src: "POrtrait/IMG_4429.JPG", category: "portrait" },
-            { src: "POrtrait/IMG_4430.JPG", category: "portrait" },
-            { src: "POrtrait/IMG_4441.JPG", category: "portrait" },
-            { src: "POrtrait/Snapchat-215964189.jpg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.43.jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.44 (1).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.44.jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.45.jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.46 (1).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.46 (2).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47 (1).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47 (2).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47.jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.48 (1).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.49 (1).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.50.jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.55.jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.04 (1).jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.04.jpeg", category: "portrait" },
-            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.07.jpeg", category: "portrait" },
+            { src: "POrtrait/IMG_1999.webp", category: "portrait" },
+            { src: "POrtrait/IMG_20250910_162619946.webp", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_001621821 (1).webp", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_001623219.webp", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_072412702.webp", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_072415446.webp", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_072423149.webp", category: "portrait" },
+            { src: "POrtrait/IMG_20260221_203927442.webp", category: "portrait" },
+            { src: "POrtrait/IMG_20260221_203935293.webp", category: "portrait" },
+            { src: "POrtrait/IMG_2040.webp", category: "portrait" },
+            { src: "POrtrait/IMG_2161.webp", category: "portrait" },
+            { src: "POrtrait/IMG_2209.webp", category: "portrait" },
+            { src: "POrtrait/IMG_4429.webp", category: "portrait" },
+            { src: "POrtrait/IMG_4430.webp", category: "portrait" },
+            { src: "POrtrait/IMG_4441.webp", category: "portrait" },
+            { src: "POrtrait/Snapchat-215964189.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.43.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.44 (1).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.44.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.45.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.46 (1).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.46 (2).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47 (1).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47 (2).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.48 (1).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.49 (1).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.50.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.55.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.04 (1).webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.04.webp", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.07.webp", category: "portrait" },
 
             // Sky
-            { src: "WhatsApp Image 2026-02-23 at 19.02.46.jpeg", category: "sky" },
-            { src: "WhatsApp Image 2026-02-23 at 19.03.05.jpeg", category: "sky" },
-            { src: "IMG_20250911_123530810.jpg", category: "sky" },
-            { src: "IMG_20251024_063348289.jpg", category: "sky" },
-            { src: "IMG_20251024_063403047.jpg", category: "sky" },
-            { src: "IMG_20251024_085157766.jpg", category: "sky" },
-            { src: "IMG_20251024_085355476.jpg", category: "sky" },
-            { src: "IMG_3720.JPG", category: "sky" },
-            { src: "IMG_3732.JPG", category: "sky" },
-            { src: "IMG_3747.JPG", category: "sky" },
-            { src: "IMG_3787.JPG", category: "sky" },
+            { src: "WhatsApp Image 2026-02-23 at 19.02.46.webp", category: "sky" },
+            { src: "WhatsApp Image 2026-02-23 at 19.03.05.webp", category: "sky" },
+            { src: "IMG_20250911_123530810.webp", category: "sky" },
+            { src: "IMG_20251024_063348289.webp", category: "sky" },
+            { src: "IMG_20251024_063403047.webp", category: "sky" },
+            { src: "IMG_20251024_085157766.webp", category: "sky" },
+            { src: "IMG_20251024_085355476.webp", category: "sky" },
+            { src: "IMG_3720.webp", category: "sky" },
+            { src: "IMG_3732.webp", category: "sky" },
+            { src: "IMG_3747.webp", category: "sky" },
+            { src: "IMG_3787.webp", category: "sky" },
 
             // Nature
-            { src: "WhatsApp Image 2026-02-23 at 19.02.48.jpeg", category: "nature" },
-            { src: "WhatsApp Image 2026-02-23 at 19.02.49.jpeg", category: "nature" },
-            { src: "WhatsApp Image 2026-02-23 at 19.03.06.jpeg", category: "nature" },
-            { src: "FullSizeRender_26.jpg", category: "nature" },
-            { src: "FullSizeRender_34.jpg", category: "nature" },
-            { src: "FullSizeRender_6.jpg", category: "nature" },
-            { src: "IMG_2333.JPG", category: "nature" },
-            { src: "IMG_2335.JPG", category: "nature" },
-            { src: "IMG_2662.JPG", category: "nature" },
-            { src: "IMG_2664.JPG", category: "nature" },
-            { src: "IMG_2726.JPG", category: "nature" },
-            { src: "IMG_2737.JPG", category: "nature" },
-            { src: "IMG_2771.JPG", category: "nature" },
-            { src: "IMG_2776.JPG", category: "nature" },
-            { src: "IMG_2820.JPG", category: "nature" },
-            { src: "IMG_2822.JPG", category: "nature" },
-            { src: "IMG_3734.JPG", category: "nature" },
-            { src: "IMG_3735.JPG", category: "nature" },
-            { src: "IMG_3796.JPG", category: "nature" },
-            { src: "IMG_3797.JPG", category: "nature" },
+            { src: "WhatsApp Image 2026-02-23 at 19.02.48.webp", category: "nature" },
+            { src: "WhatsApp Image 2026-02-23 at 19.02.49.webp", category: "nature" },
+            { src: "WhatsApp Image 2026-02-23 at 19.03.06.webp", category: "nature" },
+            { src: "FullSizeRender_26.webp", category: "nature" },
+            { src: "FullSizeRender_34.webp", category: "nature" },
+            { src: "FullSizeRender_6.webp", category: "nature" },
+            { src: "IMG_2333.webp", category: "nature" },
+            { src: "IMG_2335.webp", category: "nature" },
+            { src: "IMG_2662.webp", category: "nature" },
+            { src: "IMG_2664.webp", category: "nature" },
+            { src: "IMG_2726.webp", category: "nature" },
+            { src: "IMG_2737.webp", category: "nature" },
+            { src: "IMG_2771.webp", category: "nature" },
+            { src: "IMG_2776.webp", category: "nature" },
+            { src: "IMG_2820.webp", category: "nature" },
+            { src: "IMG_2822.webp", category: "nature" },
+            { src: "IMG_3734.webp", category: "nature" },
+            { src: "IMG_3735.webp", category: "nature" },
+            { src: "IMG_3796.webp", category: "nature" },
+            { src: "IMG_3797.webp", category: "nature" },
 
             // Urban / Others
-            { src: "IMG_1432.JPG", category: "urban" },
-            { src: "IMG_1437.JPG", category: "urban" },
-            { src: "IMG_1438.JPG", category: "urban" },
-            { src: "IMG_1536.JPG", category: "urban" },
-            { src: "IMG_1538.JPG", category: "urban" },
-            { src: "IMG_1557.JPG", category: "urban" },
-            { src: "IMG_1559.JPG", category: "urban" },
-            { src: "IMG_1577.JPG", category: "urban" },
-            { src: "IMG_2841.JPG", category: "urban" },
-            { src: "IMG_2850.JPG", category: "urban" },
-            { src: "IMG_2854.JPG", category: "urban" },
-            { src: "IMG_2880.JPG", category: "urban" },
-            { src: "IMG_2887.JPG", category: "urban" },
-            { src: "IMG_2889.JPG", category: "urban" },
-            { src: "IMG_3041.JPG", category: "urban" },
-            { src: "IMG_3042.JPG", category: "urban" },
-            { src: "IMG_3044.JPG", category: "urban" },
-            { src: "IMG_3616.JPG", category: "urban" },
-            { src: "IMG_3804.JPG", category: "urban" },
-            { src: "IMG_3808.JPG", category: "urban" }
+            { src: "IMG_1432.webp", category: "urban" },
+            { src: "IMG_1437.webp", category: "urban" },
+            { src: "IMG_1438.webp", category: "urban" },
+            { src: "IMG_1536.webp", category: "urban" },
+            { src: "IMG_1538.webp", category: "urban" },
+            { src: "IMG_1557.webp", category: "urban" },
+            { src: "IMG_1559.webp", category: "urban" },
+            { src: "IMG_1577.webp", category: "urban" },
+            { src: "IMG_2841.webp", category: "urban" },
+            { src: "IMG_2850.webp", category: "urban" },
+            { src: "IMG_2854.webp", category: "urban" },
+            { src: "IMG_2880.webp", category: "urban" },
+            { src: "IMG_2887.webp", category: "urban" },
+            { src: "IMG_2889.webp", category: "urban" },
+            { src: "IMG_3041.webp", category: "urban" },
+            { src: "IMG_3042.webp", category: "urban" },
+            { src: "IMG_3044.webp", category: "urban" },
+            { src: "IMG_3616.webp", category: "urban" },
+            { src: "IMG_3804.webp", category: "urban" },
+            { src: "IMG_3808.webp", category: "urban" }
         ];
 
 

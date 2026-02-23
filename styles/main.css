@@ -59,6 +59,29 @@
     --container-max: 1200px;
 }
 
+/* Light Theme Overrides */
+.light-theme {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-hover: #e2e8f0;
+
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-tertiary: #64748b;
+    --text-muted: #94a3b8;
+
+    --border-color: #e2e8f0;
+    --border-light: #cbd5e1;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+}
+
 /* ===================================
    Reset & Base Styles
    =================================== */
@@ -152,6 +175,20 @@ section {
 }
 
 /* ===================================
+   Scroll Animation Classes
+   =================================== */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================================
    Navigation Bar
    =================================== */
 .navbar {
@@ -163,12 +200,20 @@ section {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
-    transition: all var(--transition-base);
+    transition: all var(--transition-base), background-color var(--transition-base);
+}
+
+.light-theme .navbar {
+    background: rgba(248, 250, 252, 0.8);
 }
 
 .navbar.scrolled {
     background: rgba(10, 14, 39, 0.95);
     box-shadow: var(--shadow-lg);
+}
+
+.light-theme .navbar.scrolled {
+    background: rgba(248, 250, 252, 0.95);
 }
 
 .nav-container {
@@ -242,6 +287,25 @@ section {
 .nav-link:hover::after,
 .nav-link.active::after {
     width: 80%;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: var(--spacing-sm);
+    transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-hover);
+    color: var(--accent-primary);
 }
 
 .nav-toggle {

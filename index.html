@@ -34,6 +34,24 @@
 
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
             <button class="nav-toggle" id="navToggle">
                 <span></span>
                 <span></span>
@@ -45,6 +63,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-background">
+            <div id="particles-js" style="position: absolute; width: 100%; height: 100%; z-index: 1;"></div>
             <div class="gradient-orb orb-1"></div>
             <div class="gradient-orb orb-2"></div>
             <div class="gradient-orb orb-3"></div>
@@ -72,6 +91,11 @@
                     </a>
                     <a href="contact.html" class="btn btn-secondary">
                         Get In Touch
+                    </a>
+                    <a href="assets/Vyom_Shah_Resume.pdf" class="btn btn-secondary"
+                        style="border-color: var(--accent-secondary); color: var(--accent-secondary);" target="_blank"
+                        rel="noopener noreferrer">
+                        Download Resume
                     </a>
                 </div>
                 <div class="social-links fade-in-delay-3">
@@ -140,7 +164,7 @@
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-card">
+                <div class="stat-card animate-on-scroll">
                     <div class="stat-icon">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                             <path d="M20 5L25 15H35L27.5 22.5L30 32.5L20 25L10 32.5L12.5 22.5L5 15H15L20 5Z"
@@ -150,7 +174,7 @@
                     <h3 class="stat-number" data-target="10">0</h3>
                     <p class="stat-label">Projects Built</p>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card animate-on-scroll" style="transition-delay: 200ms;">
                     <div class="stat-icon">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                             <path d="M8 12H32M8 20H32M8 28H32" stroke="currentColor" stroke-width="2"
@@ -160,7 +184,7 @@
                     <h3 class="stat-number" data-target="10">0</h3>
                     <p class="stat-label">Technologies Learned</p>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card animate-on-scroll" style="transition-delay: 400ms;">
                     <div class="stat-icon">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                             <path
@@ -192,6 +216,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 

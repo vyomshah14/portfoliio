@@ -120,20 +120,199 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ===================================
-    // Contact Form Handling
+    // Photography Page Logic (Horizontal Masonry & Correct Sorting)
     // ===================================
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    const photoGrid = document.getElementById('photoGrid');
+    const photoFilters = document.querySelectorAll('#photography-filters .filter-btn');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function () {
-            // Show loading state on button
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerHTML;
-            submitButton.innerHTML = 'Sending...';
+    // Toggle Button Logic for Skills Page
+    const togglePhotoBtn = document.getElementById('toggle-photography-btn');
+    const photoGalleryWrapper = document.getElementById('photography-gallery-wrapper');
 
-            // Note: Direct HTML POST will refresh the page, so no need to disable or reset here
-            // The browser takes over from here.
+    if (togglePhotoBtn && photoGalleryWrapper) {
+        togglePhotoBtn.addEventListener('click', () => {
+            if (photoGalleryWrapper.style.display === 'none') {
+                photoGalleryWrapper.style.display = 'block';
+                togglePhotoBtn.textContent = 'Hide my photography skills';
+
+                // Scroll down smoothly to show the gallery
+                setTimeout(() => {
+                    photoGalleryWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else {
+                photoGalleryWrapper.style.display = 'none';
+                togglePhotoBtn.textContent = 'See my photography skills here!!!';
+            }
+        });
+    }
+
+    if (photoGrid) {
+        const photoData = [
+            // Portraits (From POrtrait folder)
+            { src: "POrtrait/IMG_1999.JPG", category: "portrait" },
+            { src: "POrtrait/IMG_20250910_162619946.jpg", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_001621821 (1).jpg", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_001623219.jpg", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_072412702.jpg", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_072415446.jpg", category: "portrait" },
+            { src: "POrtrait/IMG_20251211_072423149.jpg", category: "portrait" },
+            { src: "POrtrait/IMG_20260221_203927442.jpg", category: "portrait" },
+            { src: "POrtrait/IMG_20260221_203935293.jpg", category: "portrait" },
+            { src: "POrtrait/IMG_2040.JPG", category: "portrait" },
+            { src: "POrtrait/IMG_2161.JPG", category: "portrait" },
+            { src: "POrtrait/IMG_2209.JPG", category: "portrait" },
+            { src: "POrtrait/IMG_4429.JPG", category: "portrait" },
+            { src: "POrtrait/IMG_4430.JPG", category: "portrait" },
+            { src: "POrtrait/IMG_4441.JPG", category: "portrait" },
+            { src: "POrtrait/Snapchat-215964189.jpg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.43.jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.44 (1).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.44.jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.45.jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.46 (1).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.46 (2).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47 (1).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47 (2).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.47.jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.48 (1).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.49 (1).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.50.jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.02.55.jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.04 (1).jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.04.jpeg", category: "portrait" },
+            { src: "POrtrait/WhatsApp Image 2026-02-23 at 19.03.07.jpeg", category: "portrait" },
+
+            // Sky
+            { src: "WhatsApp Image 2026-02-23 at 19.02.46.jpeg", category: "sky" },
+            { src: "WhatsApp Image 2026-02-23 at 19.03.05.jpeg", category: "sky" },
+            { src: "IMG_20250911_123530810.jpg", category: "sky" },
+            { src: "IMG_20251024_063348289.jpg", category: "sky" },
+            { src: "IMG_20251024_063403047.jpg", category: "sky" },
+            { src: "IMG_20251024_085157766.jpg", category: "sky" },
+            { src: "IMG_20251024_085355476.jpg", category: "sky" },
+            { src: "IMG_3720.JPG", category: "sky" },
+            { src: "IMG_3732.JPG", category: "sky" },
+            { src: "IMG_3747.JPG", category: "sky" },
+            { src: "IMG_3787.JPG", category: "sky" },
+
+            // Nature
+            { src: "WhatsApp Image 2026-02-23 at 19.02.48.jpeg", category: "nature" },
+            { src: "WhatsApp Image 2026-02-23 at 19.02.49.jpeg", category: "nature" },
+            { src: "WhatsApp Image 2026-02-23 at 19.03.06.jpeg", category: "nature" },
+            { src: "FullSizeRender_26.jpg", category: "nature" },
+            { src: "FullSizeRender_34.jpg", category: "nature" },
+            { src: "FullSizeRender_6.jpg", category: "nature" },
+            { src: "IMG_2333.JPG", category: "nature" },
+            { src: "IMG_2335.JPG", category: "nature" },
+            { src: "IMG_2662.JPG", category: "nature" },
+            { src: "IMG_2664.JPG", category: "nature" },
+            { src: "IMG_2726.JPG", category: "nature" },
+            { src: "IMG_2737.JPG", category: "nature" },
+            { src: "IMG_2771.JPG", category: "nature" },
+            { src: "IMG_2776.JPG", category: "nature" },
+            { src: "IMG_2820.JPG", category: "nature" },
+            { src: "IMG_2822.JPG", category: "nature" },
+            { src: "IMG_3734.JPG", category: "nature" },
+            { src: "IMG_3735.JPG", category: "nature" },
+            { src: "IMG_3796.JPG", category: "nature" },
+            { src: "IMG_3797.JPG", category: "nature" },
+
+            // Urban / Others
+            { src: "IMG_1432.JPG", category: "urban" },
+            { src: "IMG_1437.JPG", category: "urban" },
+            { src: "IMG_1438.JPG", category: "urban" },
+            { src: "IMG_1536.JPG", category: "urban" },
+            { src: "IMG_1538.JPG", category: "urban" },
+            { src: "IMG_1557.JPG", category: "urban" },
+            { src: "IMG_1559.JPG", category: "urban" },
+            { src: "IMG_1577.JPG", category: "urban" },
+            { src: "IMG_2841.JPG", category: "urban" },
+            { src: "IMG_2850.JPG", category: "urban" },
+            { src: "IMG_2854.JPG", category: "urban" },
+            { src: "IMG_2880.JPG", category: "urban" },
+            { src: "IMG_2887.JPG", category: "urban" },
+            { src: "IMG_2889.JPG", category: "urban" },
+            { src: "IMG_3041.JPG", category: "urban" },
+            { src: "IMG_3042.JPG", category: "urban" },
+            { src: "IMG_3044.JPG", category: "urban" },
+            { src: "IMG_3616.JPG", category: "urban" },
+            { src: "IMG_3804.JPG", category: "urban" },
+            { src: "IMG_3808.JPG", category: "urban" }
+        ];
+
+
+        // Create the track elements for scrolling
+        const track = document.createElement('div');
+        track.className = 'photography-track';
+
+        // Helper to append a set of items (we will append twice for infinite scroll)
+        const appendItems = () => {
+            const fragment = document.createDocumentFragment();
+            photoData.forEach((photo) => {
+                const item = document.createElement('div');
+                item.className = 'photography-item';
+                item.setAttribute('data-category', photo.category);
+
+                item.innerHTML = `
+                    <img src="assets/photography/${photo.src}" alt="Photography - ${photo.category}" loading="lazy">
+                    <div class="photography-overlay">
+                        <span class="photography-category">${photo.category}</span>
+                    </div>
+                `;
+                fragment.appendChild(item);
+            });
+            return fragment;
+        };
+
+        // Append two sets of images for a seamless loop effect
+        track.appendChild(appendItems());
+        track.appendChild(appendItems()); // Duplicate for continuous illusion
+
+        photoGrid.appendChild(track);
+        photoGrid.classList.add('continuous-scroll');
+
+        // Filtering Logic
+        const photoItems = document.querySelectorAll('.photography-item');
+
+        photoFilters.forEach(button => {
+            button.addEventListener('click', () => {
+                photoFilters.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                if (filter === 'all') {
+                    // Turn animation back on
+                    photoGrid.classList.add('continuous-scroll');
+
+                    photoItems.forEach(item => {
+                        item.classList.remove('hide');
+                        item.style.display = ''; // Reset to default Flex behavior
+                    });
+                } else {
+                    // Turn off animation when filtering so they can see results
+                    photoGrid.classList.remove('continuous-scroll');
+
+                    // Note: Since we duplicated items for scroll, filtering will show duplicates.
+                    // Only show the first set of matches to avoiding showing the duplicates 
+                    // when the animation is off.
+
+                    let matchCount = 0;
+                    const maxMatches = photoData.filter(p => p.category === filter).length;
+
+                    photoItems.forEach(item => {
+                        if (item.getAttribute('data-category') === filter && matchCount < maxMatches) {
+                            item.classList.remove('hide');
+                            item.style.display = '';
+                            matchCount++;
+                        } else {
+                            item.classList.add('hide');
+                            // Ensure display is block or none immediately since it's now flex
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+            });
         });
     }
 

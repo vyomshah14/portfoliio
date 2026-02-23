@@ -161,8 +161,8 @@
             </div>
 
             <!-- Photography -->
-            <div class="skills-grid" style="margin-top: 3rem;">
-                <div class="skill-category">
+            <div class="skills-grid" id="photography-skill-section" style="margin-top: 3rem;">
+                <div class="skill-category" style="width: 100%;">
                     <div class="category-header">
                         <div class="category-icon">
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -204,8 +204,34 @@
                                 <div class="skill-progress" style="width: 80%"></div>
                             </div>
                         </div>
+
+                        <!-- Toggle Button for Gallery -->
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button id="toggle-photography-btn" class="submit-btn"
+                                style="width: auto; padding: 1rem 2rem;">See my photography skills here!!!</button>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Embedded Photography Gallery (Hidden by Default) -->
+            <div id="photography-gallery-wrapper"
+                style="display: none; margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <section class="filter-section" style="padding: 1rem 0;">
+                    <div class="filter-buttons" id="photography-filters" style="justify-content: center;">
+                        <button class="filter-btn active" data-filter="all">All Photos</button>
+                        <button class="filter-btn" data-filter="nature">Nature</button>
+                        <button class="filter-btn" data-filter="sky">Sky</button>
+                        <button class="filter-btn" data-filter="portrait">Portrait</button>
+                        <button class="filter-btn" data-filter="urban">Urban</button>
+                    </div>
+                </section>
+
+                <section class="photography-section" style="padding: 1rem 0;">
+                    <div class="photography-grid" id="photoGrid">
+                        <!-- Javascript will populate this grid -->
+                    </div>
+                </section>
             </div>
 
             <div class="additional-skills">

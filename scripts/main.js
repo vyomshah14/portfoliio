@@ -1,7 +1,7 @@
 // ===================================
 // Navigation Functionality
 // ===================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-        
+
         if (currentScroll > 100) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-        
+
         lastScroll = currentScroll;
     });
 
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Stats Counter Animation
     // ===================================
     const statNumbers = document.querySelectorAll('.stat-number');
-    
+
     const animateCounter = (element) => {
         const target = parseInt(element.getAttribute('data-target'));
         const duration = 2000; // 2 seconds
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                
+
                 if (filter === 'all' || category === filter) {
                     card.style.display = 'block';
                     // Trigger reflow for animation
@@ -126,70 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const formMessage = document.getElementById('formMessage');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        contactForm.addEventListener('submit', function () {
+            // Show loading state on button
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = 'Sending...';
 
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-
-            // Simulate form submission (replace with actual API call)
-            try {
-                // Show loading state
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = 'Sending...';
-                submitButton.disabled = true;
-
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 1500));
-
-                // Show success message
-                formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-                formMessage.className = 'form-message success';
-                
-                // Reset form
-                contactForm.reset();
-
-                // Reset button
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.className = 'form-message';
-                }, 5000);
-
-                // In production, replace the above with actual form submission:
-                /*
-                const response = await fetch('YOUR_API_ENDPOINT', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-                    formMessage.className = 'form-message success';
-                    contactForm.reset();
-                } else {
-                    throw new Error('Failed to send message');
-                }
-                */
-
-            } catch (error) {
-                formMessage.textContent = 'Oops! Something went wrong. Please try again.';
-                formMessage.className = 'form-message error';
-                
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalText;
-            }
+            // Note: Direct HTML POST will refresh the page, so no need to disable or reset here
+            // The browser takes over from here.
         });
     }
 
@@ -233,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const animatedElements = document.querySelectorAll(
         '.skill-category, .project-card, .timeline-item, .education-card, .certification-card'
     );
-    
+
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -245,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Typing Effect for Hero Section
     // ===================================
     const typingText = document.querySelector('.typing-text');
-    
+
     if (typingText) {
         const text = typingText.textContent;
         typingText.textContent = '';
@@ -267,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Skill Progress Bar Animation
     // ===================================
     const skillBars = document.querySelectorAll('.skill-progress');
-    
+
     if (skillBars.length > 0) {
         const skillObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -290,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Parallax Effect for Hero Background
     // ===================================
     const heroBackground = document.querySelector('.hero-background');
-    
+
     if (heroBackground) {
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
@@ -434,7 +378,7 @@ function debounce(func, wait) {
 // Throttle function for scroll events
 function throttle(func, limit) {
     let inThrottle;
-    return function(...args) {
+    return function (...args) {
         if (!inThrottle) {
             func.apply(this, args);
             inThrottle = true;

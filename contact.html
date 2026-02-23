@@ -72,7 +72,7 @@
                             </div>
                             <div>
                                 <h3>Email</h3>
-                                <a href="mailto:vyom.shah@example.com">vyom.shah@example.com</a>
+                                <a href="mailto:vyomshah2021@gmail.com">vyomshah2021@gmail.com</a>
                             </div>
                         </div>
 
@@ -133,7 +133,12 @@
 
                 <!-- Contact Form -->
                 <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="0cd339e1-55c5-463d-83a0-21cc68a19813">
+                        <input type="hidden" name="from_name" value="Vyom Shah Portfolio">
+                        <input type="hidden" name="subject" value="New Portfolio Message">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" required placeholder="John Doe">
@@ -145,8 +150,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+                            <label for="form_subject">Subject</label>
+                            <input type="text" id="form_subject" name="form_subject" required
+                                placeholder="Project Inquiry">
                         </div>
 
                         <div class="form-group">
@@ -167,7 +173,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- Footer -->
@@ -184,6 +189,7 @@
         </div>
     </footer>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 

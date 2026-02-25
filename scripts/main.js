@@ -8,18 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             "particles": {
-                "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#6366f1" },
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#00f2fe", "#4facfe", "#f43f5e"] },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
-                "size": { "value": 3, "random": true, "anim": { "enable": false } },
-                "line_linked": { "enable": true, "distance": 150, "color": "#8b5cf6", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+                "opacity": { "value": 0.4, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 4, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00f2fe", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
             },
             "interactivity": {
                 "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 2 } }
+                "events": { "onhover": { "enable": true, "mode": "bubble" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "bubble": { "distance": 200, "size": 6, "duration": 2, "opacity": 0.8 }, "push": { "particles_nb": 4 } }
             },
             "retina_detect": true
         });
@@ -317,11 +317,11 @@ document.addEventListener('DOMContentLoaded', function () {
         ];
 
 
-        // Create the track elements for scrolling
+        // Create the track element for grid items
         const track = document.createElement('div');
         track.className = 'photography-track';
 
-        // Helper to append a set of items (we will append twice for infinite scroll)
+        // Helper to append the set of items
         const appendItems = () => {
             const fragment = document.createDocumentFragment();
             photoData.forEach((photo) => {
@@ -340,12 +340,10 @@ document.addEventListener('DOMContentLoaded', function () {
             return fragment;
         };
 
-        // Append two sets of images for a seamless loop effect
+        // Append just one set of images for the Masonry Grid
         track.appendChild(appendItems());
-        track.appendChild(appendItems()); // Duplicate for continuous illusion
 
         photoGrid.appendChild(track);
-        photoGrid.classList.add('continuous-scroll');
 
         // Filtering Logic
         const photoItems = document.querySelectorAll('.photography-item');
@@ -358,32 +356,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 const filter = button.getAttribute('data-filter');
 
                 if (filter === 'all') {
-                    // Turn animation back on
-                    photoGrid.classList.add('continuous-scroll');
-
                     photoItems.forEach(item => {
                         item.classList.remove('hide');
-                        item.style.display = ''; // Reset to default Flex behavior
+                        item.style.display = 'inline-block'; // Reset to column block
                     });
                 } else {
-                    // Turn off animation when filtering so they can see results
-                    photoGrid.classList.remove('continuous-scroll');
-
-                    // Note: Since we duplicated items for scroll, filtering will show duplicates.
-                    // Only show the first set of matches to avoiding showing the duplicates 
-                    // when the animation is off.
-
-                    let matchCount = 0;
-                    const maxMatches = photoData.filter(p => p.category === filter).length;
-
                     photoItems.forEach(item => {
-                        if (item.getAttribute('data-category') === filter && matchCount < maxMatches) {
+                        if (item.getAttribute('data-category') === filter) {
                             item.classList.remove('hide');
-                            item.style.display = '';
-                            matchCount++;
+                            item.style.display = 'inline-block';
                         } else {
                             item.classList.add('hide');
-                            // Ensure display is block or none immediately since it's now flex
                             item.style.display = 'none';
                         }
                     });
@@ -611,6 +594,35 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     */
+    // ===================================
+    // Contact Form ReCAPTCHA Validation
+    // ===================================
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            // Check if grecaptcha is available and get the response
+            if (typeof grecaptcha !== 'undefined') {
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (recaptchaResponse.length === 0) {
+                    // reCAPTCHA not completed
+                    e.preventDefault();
+
+                    // Show error message (you can customize this to be a nice UI element instead of an alert)
+                    const formMessage = document.getElementById('formMessage');
+                    if (formMessage) {
+                        formMessage.textContent = 'Please complete the reCAPTCHA verification.';
+                        formMessage.style.color = '#ef4444'; // Red error color
+                        formMessage.style.display = 'block';
+                        formMessage.style.marginTop = '1rem';
+                        formMessage.style.textAlign = 'center';
+                    } else {
+                        alert('Please complete the reCAPTCHA verification.');
+                    }
+                }
+            }
+        });
+    }
+
 });
 
 // ===================================

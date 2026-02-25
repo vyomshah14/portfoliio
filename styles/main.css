@@ -3,34 +3,40 @@
    =================================== */
 :root {
     /* Colors - Dark Professional Theme */
-    --bg-primary: #0a0e27;
-    --bg-secondary: #111827;
-    --bg-tertiary: #1f2937;
-    --bg-card: #1a1f35;
-    --bg-hover: #252b45;
+    --bg-primary: #050510;
+    --bg-secondary: #0a0b17;
+    --bg-tertiary: #111222;
+    --bg-card: rgba(16, 18, 38, 0.5);
+    --bg-hover: rgba(30, 32, 56, 0.7);
 
-    /* Accent Colors */
-    --accent-primary: #6366f1;
-    --accent-secondary: #8b5cf6;
-    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    --accent-glow: rgba(99, 102, 241, 0.3);
+    /* Accent Colors - Neon Cyan & Fuchsia */
+    --accent-primary: #00f2fe;
+    --accent-secondary: #f43f5e;
+    --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --accent-glow: rgba(0, 242, 254, 0.4);
+
+    /* Classmorphism Tokens */
+    --glass-bg: rgba(10, 11, 23, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 0.05);
+    --glass-blur: 24px;
 
     /* Text Colors */
-    --text-primary: #f9fafb;
-    --text-secondary: #d1d5db;
-    --text-tertiary: #9ca3af;
-    --text-muted: #6b7280;
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --text-tertiary: #94a3b8;
+    --text-muted: #64748b;
 
     /* Border & Divider */
-    --border-color: #374151;
-    --border-light: #4b5563;
+    --border-color: var(--glass-border);
+    --border-light: rgba(255, 255, 255, 0.12);
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
-    --shadow-glow: 0 0 20px var(--accent-glow);
+    --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 16px -4px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 20px var(--accent-glow), 0 0 40px rgba(0, 242, 254, 0.1);
 
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -45,15 +51,16 @@
     --spacing-2xl: 4rem;
 
     /* Border Radius */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
 
     /* Transitions */
-    --transition-fast: 150ms ease;
-    --transition-base: 300ms ease;
-    --transition-slow: 500ms ease;
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Container */
     --container-max: 1200px;
@@ -61,25 +68,43 @@
 
 /* Light Theme Overrides */
 .light-theme {
+    /* Backgrounds - Soft Grays */
     --bg-primary: #f8fafc;
     --bg-secondary: #ffffff;
     --bg-tertiary: #f1f5f9;
-    --bg-card: #ffffff;
-    --bg-hover: #e2e8f0;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-hover: rgba(241, 245, 249, 0.95);
 
+    /* Accent Colors - Richer for better contrast */
+    --accent-primary: #0284c7;
+    /* Sky blue but darker */
+    --accent-secondary: #e11d48;
+    /* Rose/Pink but darker */
+    --accent-gradient: linear-gradient(135deg, #0284c7 0%, #3b82f6 100%);
+    --accent-glow: rgba(2, 132, 199, 0.2);
+
+    /* Glassmorphism Tokens - Light */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    /* Slightly more visible border */
+    --glass-highlight: rgba(255, 255, 255, 0.9);
+
+    /* Text */
     --text-primary: #0f172a;
     --text-secondary: #334155;
-    --text-tertiary: #64748b;
-    --text-muted: #94a3b8;
+    --text-tertiary: #475569;
+    --text-muted: #64748b;
 
-    --border-color: #e2e8f0;
-    --border-light: #cbd5e1;
+    /* Borders */
+    --border-color: var(--glass-border);
+    --border-light: rgba(0, 0, 0, 0.1);
 
+    /* Shadows - softer and more diffuse */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.15);
 }
 
 /* ===================================
@@ -101,6 +126,17 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+/* Global Background for Glassmorphism Context */
+.global-background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
 }
 
 ::selection {
@@ -196,24 +232,26 @@ section {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(10, 14, 39, 0.8);
-    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     transition: all var(--transition-base), background-color var(--transition-base);
 }
 
 .light-theme .navbar {
-    background: rgba(248, 250, 252, 0.8);
+    background: var(--glass-bg);
 }
 
 .navbar.scrolled {
-    background: rgba(10, 14, 39, 0.95);
+    background: var(--glass-bg);
     box-shadow: var(--shadow-lg);
+    border-bottom-color: var(--glass-highlight);
 }
 
 .light-theme .navbar.scrolled {
-    background: rgba(248, 250, 252, 0.95);
+    background: var(--glass-bg);
 }
 
 .nav-container {
@@ -362,6 +400,11 @@ section {
     animation-delay: 0s;
 }
 
+.light-theme .orb-1 {
+    background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+    opacity: 0.15;
+}
+
 .orb-2 {
     width: 400px;
     height: 400px;
@@ -369,6 +412,11 @@ section {
     bottom: -10%;
     left: -10%;
     animation-delay: 7s;
+}
+
+.light-theme .orb-2 {
+    background: radial-gradient(circle, #818cf8 0%, transparent 70%);
+    opacity: 0.15;
 }
 
 .orb-3 {
@@ -379,6 +427,11 @@ section {
     left: 50%;
     transform: translate(-50%, -50%);
     animation-delay: 14s;
+}
+
+.light-theme .orb-3 {
+    background: radial-gradient(circle, #fb7185 0%, transparent 70%);
+    opacity: 0.15;
 }
 
 @keyframes float {
@@ -482,8 +535,10 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     color: var(--text-secondary);
     transition: all var(--transition-base);
@@ -493,7 +548,7 @@ section {
     background: var(--accent-gradient);
     border-color: transparent;
     color: white;
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.05);
     box-shadow: var(--shadow-glow);
 }
 
@@ -503,20 +558,22 @@ section {
 }
 
 .code-window {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-xl);
 }
 
 .window-header {
-    background: var(--bg-tertiary);
+    background: rgba(0, 0, 0, 0.2);
     padding: var(--spacing-sm);
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .window-dots {
@@ -728,9 +785,9 @@ section {
    Stats Section
    =================================== */
 .stats-section {
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    background: transparent;
+    position: relative;
+    padding: var(--spacing-2xl) 0;
 }
 
 .stats-grid {
@@ -742,16 +799,20 @@ section {
 .stat-card {
     text-align: center;
     padding: var(--spacing-lg);
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
+    box-shadow: var(--shadow-md);
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
     border-color: var(--accent-primary);
     box-shadow: var(--shadow-glow);
+    background: var(--bg-hover);
 }
 
 .stat-icon {
@@ -781,7 +842,7 @@ section {
     padding-top: 120px;
     padding-bottom: var(--spacing-xl);
     text-align: center;
-    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    background: transparent;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -823,7 +884,7 @@ section {
    About Page
    =================================== */
 .about-section {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .about-grid {
@@ -849,6 +910,8 @@ section {
     width: 100%;
     height: 100%;
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 2px solid var(--border-color);
     border-radius: var(--radius-xl);
     display: flex;
@@ -906,6 +969,8 @@ section {
     gap: var(--spacing-md);
     padding: var(--spacing-md);
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
@@ -949,7 +1014,7 @@ section {
    Skills Page
    =================================== */
 .skills-section {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .skills-grid {
@@ -960,6 +1025,8 @@ section {
 
 .skill-category {
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
@@ -1054,6 +1121,8 @@ section {
 .skill-tag {
     padding: 0.5rem 1rem;
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-secondary);
@@ -1073,7 +1142,7 @@ section {
    Projects Page
    =================================== */
 .filter-section {
-    background: var(--bg-secondary);
+    background: transparent;
     border-bottom: 1px solid var(--border-color);
     padding: var(--spacing-lg) 0;
 }
@@ -1088,6 +1157,8 @@ section {
 .filter-btn {
     padding: 0.75rem 1.5rem;
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-secondary);
@@ -1104,7 +1175,7 @@ section {
 }
 
 .projects-section {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .projects-grid {
@@ -1115,6 +1186,8 @@ section {
 
 .project-card {
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -1215,7 +1288,7 @@ section {
    Experience Page
    =================================== */
 .experience-section {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .timeline {
@@ -1258,6 +1331,8 @@ section {
 
 .timeline-content {
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
@@ -1337,7 +1412,7 @@ section {
    =================================== */
 .education-section,
 .certifications-section {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .education-grid {
@@ -1351,6 +1426,8 @@ section {
     gap: var(--spacing-lg);
     padding: var(--spacing-lg);
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
@@ -1426,6 +1503,8 @@ section {
 .certification-card {
     padding: var(--spacing-lg);
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
@@ -1481,7 +1560,7 @@ section {
    Contact Page
    =================================== */
 .contact-section {
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 .contact-grid {
@@ -1508,6 +1587,8 @@ section {
     gap: var(--spacing-md);
     padding: var(--spacing-md);
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
@@ -1558,6 +1639,8 @@ section {
     gap: 0.5rem;
     padding: var(--spacing-md);
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     color: var(--text-secondary);
@@ -1576,6 +1659,8 @@ section {
 /* Contact Form */
 .contact-form-container {
     background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
@@ -1801,66 +1886,40 @@ section {
     }
 }
 
-/* =========================================
-   Photography Section (Horizontal Scroll Slider)
+/* ==========================================
+   Photography Section (Masonry Grid)
    ========================================= */
 .photography-grid {
-    display: flex;
-    gap: 1.5rem;
+    /* CSS Columns for a simple Masonry effect */
+    column-count: 3;
+    column-gap: 1.5rem;
     margin-top: 2rem;
     padding-bottom: 2rem;
-
-    /* Enable horizontal scrolling just in case JS animation pauses / for touch */
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-
-    /* Hide scrollbar for cleaner look */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+    width: 100%;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.photography-grid::-webkit-scrollbar {
-    display: none;
+@media (max-width: 1024px) {
+    .photography-grid {
+        column-count: 2;
+    }
 }
 
-/* 
-  To make it "move horizontally" beautifully, we add a specific continuous 
-  scroll animation track if it has a specific class (controlled by JS or just CSS) 
-*/
+@media (max-width: 640px) {
+    .photography-grid {
+        column-count: 1;
+    }
+}
+
+/* Remove continuous scroll classes for standard grid */
 .photography-grid.continuous-scroll {
-    overflow: hidden;
-    /* Hide the bounds so we can animate the inner track */
+    overflow: visible;
     display: block;
-    /* The track inside will be flex */
 }
 
 .photography-track {
-    display: flex;
-    gap: 1.5rem;
-    width: max-content;
-    animation: scrollHorizontal 60s linear infinite;
-}
-
-.photography-grid.continuous-scroll:hover .photography-track {
-    animation-play-state: paused;
-    /* Pause on hover so users can click/view */
-}
-
-@keyframes scrollHorizontal {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(calc(-50% - 0.75rem));
-    }
-
-    /* Scrolls half the duplicated track */
+    /* If JS still appends this, make it wrap properly */
+    display: block;
+    width: 100%;
 }
 
 .photography-item {
@@ -1873,20 +1932,11 @@ section {
     opacity: 1;
     transform: scale(1);
 
-    /* Horizontal Slider Styles */
-    height: 350px;
-    /* Fixed height for the slider */
-    flex: 0 0 auto;
-    /* Prevent shrinking/growing in a row slider */
-    width: auto;
-    scroll-snap-align: start;
-}
-
-/* On smaller screens, make the height smaller to fit better */
-@media (max-width: 768px) {
-    .photography-item {
-        height: 250px;
-    }
+    /* Masonry Item Styles */
+    display: inline-block;
+    /* Prevent breaking across columns */
+    width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 .photography-item.hide {
@@ -1900,12 +1950,11 @@ section {
 }
 
 .photography-item img {
-    height: 100%;
-    width: auto;
-    min-width: 200px;
-    /* Ensure thin images don't collapse */
+    width: 100%;
+    height: auto;
     object-fit: cover;
     display: block;
+    border-radius: var(--radius-lg);
 }
 
 .photography-overlay {

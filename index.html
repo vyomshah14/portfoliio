@@ -13,62 +13,32 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- SEO & Metadata -->
+    <meta name="author" content="Vyom Shah">
+    <meta property="og:title" content="Vyom Shah - Software Developer">
+    <meta property="og:description" content="Portfolio of Vyom Shah, a passionate software developer crafting innovative digital solutions.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vyom Shah - Software Developer">
+
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-bracket">&lt;</span>
-                <span class="logo-text">VS</span>
-                <span class="logo-bracket">/&gt;</span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="skills.html" class="nav-link">Skills</a>
-                <a href="projects.html" class="nav-link">Projects</a>
-                <a href="experience.html" class="nav-link">Experience</a>
-                <a href="education.html" class="nav-link">Education</a>
+    <!-- Navigation Component -->
+    <global-navbar></global-navbar>
 
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <!-- Global Background Elements -->
+    <div class="global-background">
+        <div id="particles-js" style="position: absolute; width: 100%; height: 100%; z-index: 1;"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-background">
-            <div id="particles-js" style="position: absolute; width: 100%; height: 100%; z-index: 1;"></div>
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
-
         <div class="hero-content">
             <div class="hero-text">
                 <p class="hero-greeting fade-in">Hi, I'm</p>
@@ -200,23 +170,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2026 Vyom Shah. Crafted with passion and code.</p>
-                <div class="footer-links">
-                    <a href="https://github.com/vyomshah14" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://www.linkedin.com/in/vyom-shah-007632290/" target="_blank"
-                        rel="noopener noreferrer">LinkedIn</a>
-                    <a href="https://www.instagram.com/_vyom_shah" target="_blank"
-                        rel="noopener noreferrer">Instagram</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Component -->
+    <global-footer></global-footer>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="scripts/components.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 

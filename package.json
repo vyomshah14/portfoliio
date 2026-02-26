@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "A modern, professional portfolio website showcasing my work as a Software Developer. Built with clean HTML, CSS, and JavaScript featuring a stunning dark mode design with smooth animations and interactive elements.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "vercel": "^50.23.2"
+  },
+  "type": "module"
+}

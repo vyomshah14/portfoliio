@@ -177,9 +177,35 @@
             <h2 class="section-heading" style="text-align: center; margin-bottom: 2rem;">GitHub Contributions</h2>
             <div class="calendar-container animate-on-scroll"
                 style="background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 2rem; overflow: hidden; width: 100%; box-sizing: border-box;">
-                <div class="calendar" style="width: 100%; min-height: 150px; font-family: 'Inter', sans-serif;">
-                    Loading GitHub data...
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 id="github-totals" style="color: var(--text-primary); font-size: 1.2rem; font-weight: 500;">
+                        Loading...</h3>
+                    <select id="github-year-selector"
+                        style="background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--glass-border); border-radius: 6px; padding: 0.5rem 1rem; font-family: var(--font-primary); outline: none; cursor: pointer;">
+                        <option value="2026">2026</option>
+                        <option value="2025" selected>2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
                 </div>
+
+                <div id="github-calendar-grid" class="calendar-grid">
+                    <!-- Javascript will inject the 53 weeks here -->
+                </div>
+
+                <div
+                    style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;">
+                    <span>Less</span>
+                    <div class="calendar-day level-0"></div>
+                    <div class="calendar-day level-1"></div>
+                    <div class="calendar-day level-2"></div>
+                    <div class="calendar-day level-3"></div>
+                    <div class="calendar-day level-4"></div>
+                    <span>More</span>
+                </div>
+
             </div>
         </div>
     </section>
@@ -187,14 +213,8 @@
     <!-- Footer Component -->
     <global-footer></global-footer>
 
-    <!-- GitHub Calendar Script & Styles -->
-    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            GitHubCalendar(".calendar", "vyomshah14", { responsive: true, tooltips: true });
-        });
-    </script>
+    <!-- Custom GitHub Calendar Script -->
+    <script src="scripts/github-calendar.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="scripts/components.js"></script>

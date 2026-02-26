@@ -2014,144 +2014,83 @@ section {
     pointer-events: none;
 }
 
-.calendar-container .calendar {
-    position: relative;
-    z-index: 1;
+/* Custom Calendar Grid Layout */
+.calendar-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 3px;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) transparent;
 }
 
-/* Base text and links */
-.calendar-container text.wday,
-.calendar-container text.month,
-.calendar-container .contrib-number,
-.calendar-container .text-muted {
-    color: var(--text-secondary) !important;
-    font-family: var(--font-primary) !important;
+.calendar-grid::-webkit-scrollbar {
+    height: 6px;
 }
 
-.calendar-container a {
-    color: var(--accent-primary) !important;
+.calendar-grid::-webkit-scrollbar-thumb {
+    background-color: var(--accent-primary);
+    border-radius: 3px;
 }
 
-.calendar-container a,
-.calendar-container .contrib-number {
-    font-weight: 600 !important;
+.calendar-day-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-primary);
+}
+
+.day-label {
+    height: 12px;
+    line-height: 12px;
+}
+
+.calendar-week {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.calendar-day {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.calendar-day:hover {
+    transform: scale(1.2);
+    z-index: 10;
 }
 
 /* Customizing the contribution squares for a dark neon look */
 /* Empty/Zero contributions */
-.calendar-container rect[data-level="0"] {
-    fill: rgba(255, 255, 255, 0.05) !important;
-    rx: 4;
-    /* rounded corners */
+.calendar-day.level-0 {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Level 1 (Lightest) */
-.calendar-container rect[data-level="1"] {
-    fill: rgba(0, 242, 254, 0.3) !important;
-    rx: 4;
+.calendar-day.level-1 {
+    background-color: rgba(0, 242, 254, 0.3);
 }
 
 /* Level 2 */
-.calendar-container rect[data-level="2"] {
-    fill: rgba(0, 242, 254, 0.6) !important;
-    rx: 4;
+.calendar-day.level-2 {
+    background-color: rgba(0, 242, 254, 0.6);
 }
 
 /* Level 3 */
-.calendar-container rect[data-level="3"] {
-    fill: rgba(0, 242, 254, 0.8) !important;
-    rx: 4;
-    filter: drop-shadow(0 0 2px var(--accent-primary));
-}
-
-/* Level 4 (Highest) */
-.calendar-container rect[data-level="4"] {
-    fill: var(--accent-primary) !important;
-    rx: 4;
-    filter: drop-shadow(0 0 5px var(--accent-primary));
-}
-
-/* Legend items */
-.calendar-container .legend li {
-    border-radius: 4px !important;
-}
-
-.calendar-container .legend li[data-level="0"] {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-.calendar-container .legend li[data-level="1"] {
-    background-color: rgba(0, 242, 254, 0.3) !important;
-}
-
-.calendar-container .legend li[data-level="2"] {
-    background-color: rgba(0, 242, 254, 0.6) !important;
-}
-
-.calendar-container .legend li[data-level="3"] {
-    background-color: rgba(0, 242, 254, 0.8) !important;
+.calendar-day.level-3 {
+    background-color: rgba(0, 242, 254, 0.8);
     box-shadow: 0 0 2px var(--accent-primary);
 }
 
-.calendar-container .legend li[data-level="4"] {
-    background-color: var(--accent-primary) !important;
+/* Level 4 (Highest) */
+.calendar-day.level-4 {
+    background-color: var(--accent-primary);
     box-shadow: 0 0 5px var(--accent-primary);
-}
-
-/* Override and remove GitHub default borders */
-.calendar-container .calendar {
-    border: none !important;
-}
-
-.calendar-container .border.py-2.graph-before-activity-overview {
-    border: none !important;
-}
-
-.calendar-container .border {
-    border: none !important;
-}
-
-.calendar-container .contrib-column {
-    border: none !important;
-}
-
-/* Hide streak sections and make total contributions section full width */
-.calendar-container .contrib-column:not(.contrib-column-first) {
-    display: none !important;
-}
-
-.calendar-container .contrib-row {
-    display: block !important;
-}
-
-.calendar-container .contrib-column.contrib-column-first {
-    display: block !important;
-    width: 100% !important;
-    text-align: center !important;
-    border-right: none !important;
-}
-
-/* Hide accessibility link that overlaps title */
-.calendar-container .sr-only {
-    display: none !important;
-}
-
-/* Add some glassmorphism to tooltips */
-.calendar-container tool-tip,
-.calendar-container .svg-tip,
-.svg-tip {
-    background: rgba(10, 11, 23, 0.95) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid var(--accent-primary) !important;
-    color: var(--text-primary) !important;
-    box-shadow: var(--shadow-md), 0 0 15px rgba(0, 242, 254, 0.3) !important;
-    border-radius: var(--radius-md) !important;
-    font-family: var(--font-primary) !important;
-    z-index: 9999 !important;
-}
-
-.calendar-container .svg-tip::after,
-.svg-tip::after {
-    border-top-color: var(--accent-primary) !important;
 }

@@ -21,8 +21,6 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Vyom Shah - Software Developer">
-
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -131,6 +129,20 @@
 
                 <!-- Contact Form -->
                 <div class="contact-form-container">
+                    <div id="auth-wall"
+                        style="display: none; text-align: center; padding: 4rem 2rem; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            style="margin-bottom: 1rem; color: var(--primary);">
+                            <path
+                                d="M12 2C9.243 2 7 4.243 7 7V10H6C4.897 10 4 10.897 4 12V20C4 21.103 4.897 22 6 22H18C19.103 22 20 21.103 20 20V12C20 10.897 19.103 10 18 10H17V7C17 4.243 14.757 2 12 2ZM12 4C13.654 4 15 5.346 15 7V10H9V7C9 5.346 10.346 4 12 4ZM12 18C10.897 18 10 17.103 10 16C10 14.897 10.897 14 12 14C13.103 14 14 14.897 14 16C14 17.103 13.103 18 12 18Z"
+                                fill="currentColor" />
+                        </svg>
+                        <h3 style="margin-bottom: 0.5rem;">Authentication Required</h3>
+                        <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Please sign in to send a message
+                            or collaboration request.</p>
+                        <button class="btn btn-primary" onclick="if(window.Clerk) window.Clerk.openSignIn()">Sign In to
+                            Contact</button>
+                    </div>
                     <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="0cd339e1-55c5-463d-83a0-21cc68a19813">
                         <input type="hidden" name="from_name" value="Vyom Shah Portfolio">
@@ -158,10 +170,6 @@
                             <textarea id="message" name="message" rows="6" required
                                 placeholder="Tell me about your project..."></textarea>
                         </div>
-
-                        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                            style="margin-bottom: 1rem;"></div>
-
                         <button type="submit" class="btn btn-primary btn-full">
                             Send Message
                             <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -183,6 +191,7 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="scripts/components.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
 </body>
 
 </html>

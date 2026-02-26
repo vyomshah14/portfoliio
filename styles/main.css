@@ -1983,3 +1983,135 @@ section {
     border-radius: 4px;
     display: inline-block;
 }
+/* ===================================
+   GitHub Calendar Custom Theme
+   =================================== */
+.calendar-container {
+    background: var(--bg-card) !important;
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle glow behind the calendar */
+.calendar-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.calendar-container .calendar {
+    position: relative;
+    z-index: 1;
+}
+
+/* Base text and links */
+.calendar-container text.wday,
+.calendar-container text.month,
+.calendar-container .contrib-number,
+.calendar-container .text-muted {
+    color: var(--text-secondary) !important;
+    font-family: var(--font-primary) !important;
+}
+
+.calendar-container a {
+    color: var(--accent-primary) !important;
+}
+
+.calendar-container a,
+.calendar-container .contrib-number {
+    font-weight: 600 !important;
+}
+
+/* Customizing the contribution squares for a dark neon look */
+/* Empty/Zero contributions */
+.calendar-container rect[data-level="0"] {
+    fill: rgba(255, 255, 255, 0.05) !important;
+    rx: 4; /* rounded corners */
+}
+
+/* Level 1 (Lightest) */
+.calendar-container rect[data-level="1"] {
+    fill: rgba(0, 242, 254, 0.3) !important;
+    rx: 4;
+}
+
+/* Level 2 */
+.calendar-container rect[data-level="2"] {
+    fill: rgba(0, 242, 254, 0.6) !important;
+    rx: 4;
+}
+
+/* Level 3 */
+.calendar-container rect[data-level="3"] {
+    fill: rgba(0, 242, 254, 0.8) !important;
+    rx: 4;
+    filter: drop-shadow(0 0 2px var(--accent-primary));
+}
+
+/* Level 4 (Highest) */
+.calendar-container rect[data-level="4"] {
+    fill: var(--accent-primary) !important;
+    rx: 4;
+    filter: drop-shadow(0 0 5px var(--accent-primary));
+}
+
+/* Legend items */
+.calendar-container .legend li {
+    border-radius: 4px !important;
+}
+.calendar-container .legend li[data-level="0"] { background-color: rgba(255, 255, 255, 0.05) !important; }
+.calendar-container .legend li[data-level="1"] { background-color: rgba(0, 242, 254, 0.3) !important; }
+.calendar-container .legend li[data-level="2"] { background-color: rgba(0, 242, 254, 0.6) !important; }
+.calendar-container .legend li[data-level="3"] { 
+    background-color: rgba(0, 242, 254, 0.8) !important; 
+    box-shadow: 0 0 2px var(--accent-primary);
+}
+.calendar-container .legend li[data-level="4"] { 
+    background-color: var(--accent-primary) !important; 
+    box-shadow: 0 0 5px var(--accent-primary);
+}
+
+/* Override GitHub default borders */
+.calendar-container .contrib-column {
+    border-left: 1px solid var(--border-light) !important;
+    border-top: 1px solid var(--border-light) !important;
+}
+
+/* Hide accessibility link that overlaps title */
+.calendar-container .sr-only {
+    display: none !important;
+}
+
+/* Add some glassmorphism to tooltips */
+.calendar-container tool-tip,
+.calendar-container .svg-tip,
+.svg-tip {
+    background: rgba(10, 11, 23, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--accent-primary) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-md), 0 0 15px rgba(0, 242, 254, 0.3) !important;
+    border-radius: var(--radius-md) !important;
+    font-family: var(--font-primary) !important;
+    z-index: 9999 !important;
+}
+
+.calendar-container .svg-tip::after,
+.svg-tip::after {
+    border-top-color: var(--accent-primary) !important;
+}

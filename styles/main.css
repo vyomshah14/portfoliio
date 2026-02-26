@@ -1983,6 +1983,7 @@ section {
     border-radius: 4px;
     display: inline-block;
 }
+
 /* ===================================
    GitHub Calendar Custom Theme
    =================================== */
@@ -2040,7 +2041,8 @@ section {
 /* Empty/Zero contributions */
 .calendar-container rect[data-level="0"] {
     fill: rgba(255, 255, 255, 0.05) !important;
-    rx: 4; /* rounded corners */
+    rx: 4;
+    /* rounded corners */
 }
 
 /* Level 1 (Lightest) */
@@ -2073,22 +2075,60 @@ section {
 .calendar-container .legend li {
     border-radius: 4px !important;
 }
-.calendar-container .legend li[data-level="0"] { background-color: rgba(255, 255, 255, 0.05) !important; }
-.calendar-container .legend li[data-level="1"] { background-color: rgba(0, 242, 254, 0.3) !important; }
-.calendar-container .legend li[data-level="2"] { background-color: rgba(0, 242, 254, 0.6) !important; }
-.calendar-container .legend li[data-level="3"] { 
-    background-color: rgba(0, 242, 254, 0.8) !important; 
+
+.calendar-container .legend li[data-level="0"] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.calendar-container .legend li[data-level="1"] {
+    background-color: rgba(0, 242, 254, 0.3) !important;
+}
+
+.calendar-container .legend li[data-level="2"] {
+    background-color: rgba(0, 242, 254, 0.6) !important;
+}
+
+.calendar-container .legend li[data-level="3"] {
+    background-color: rgba(0, 242, 254, 0.8) !important;
     box-shadow: 0 0 2px var(--accent-primary);
 }
-.calendar-container .legend li[data-level="4"] { 
-    background-color: var(--accent-primary) !important; 
+
+.calendar-container .legend li[data-level="4"] {
+    background-color: var(--accent-primary) !important;
     box-shadow: 0 0 5px var(--accent-primary);
 }
 
-/* Override GitHub default borders */
+/* Override and remove GitHub default borders */
+.calendar-container .calendar {
+    border: none !important;
+}
+
+.calendar-container .border.py-2.graph-before-activity-overview {
+    border: none !important;
+}
+
+.calendar-container .border {
+    border: none !important;
+}
+
 .calendar-container .contrib-column {
-    border-left: 1px solid var(--border-light) !important;
-    border-top: 1px solid var(--border-light) !important;
+    border: none !important;
+}
+
+/* Hide streak sections and make total contributions section full width */
+.calendar-container .contrib-column:not(.contrib-column-first) {
+    display: none !important;
+}
+
+.calendar-container .contrib-row {
+    display: block !important;
+}
+
+.calendar-container .contrib-column.contrib-column-first {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    border-right: none !important;
 }
 
 /* Hide accessibility link that overlaps title */

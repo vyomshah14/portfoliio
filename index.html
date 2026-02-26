@@ -171,8 +171,30 @@
         </div>
     </section>
 
+    <!-- GitHub Contributions Section -->
+    <section class="github-section" style="padding: 4rem 0;">
+        <div class="container">
+            <h2 class="section-heading" style="text-align: center; margin-bottom: 2rem;">GitHub Contributions</h2>
+            <div class="calendar-container animate-on-scroll"
+                style="background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 2rem; overflow: hidden; width: 100%; box-sizing: border-box;">
+                <div class="calendar" style="width: 100%; min-height: 150px; font-family: 'Inter', sans-serif;">
+                    Loading GitHub data...
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer Component -->
     <global-footer></global-footer>
+
+    <!-- GitHub Calendar Script & Styles -->
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            GitHubCalendar(".calendar", "vyomshah14", { responsive: true, tooltips: true });
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="scripts/components.js"></script>

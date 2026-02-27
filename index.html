@@ -14,6 +14,9 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
+
+
+
     <!-- SEO & Metadata -->
     <meta name="author" content="Vyom Shah">
     <meta property="og:title" content="Vyom Shah - Software Developer">
@@ -175,37 +178,29 @@
     <section class="github-section" style="padding: 4rem 0;">
         <div class="container">
             <h2 class="section-heading" style="text-align: center; margin-bottom: 2rem;">GitHub Contributions</h2>
-            <div class="calendar-container animate-on-scroll"
-                style="background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 2rem; overflow: hidden; width: 100%; box-sizing: border-box;">
 
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                    <h3 id="github-totals" style="color: var(--text-primary); font-size: 1.2rem; font-weight: 500;">
-                        Loading...</h3>
-                    <select id="github-year-selector"
-                        style="background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--glass-border); border-radius: 6px; padding: 0.5rem 1rem; font-family: var(--font-primary); outline: none; cursor: pointer;">
-                        <option value="2026">2026</option>
-                        <option value="2025" selected>2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
+            <div class="calendar-wrapper animate-on-scroll"
+                style="display: flex; gap: 1.5rem; align-items: flex-start; max-width: 100%; overflow-x: auto; padding-bottom: 1rem;">
+                <div class="calendar-container"
+                    style="background: var(--surface); border-radius: 12px; padding: 2rem; overflow: hidden; flex: 1; box-sizing: border-box; min-height: 200px;">
+                    <!-- GitHub Calendar Library Target -->
+                    <div class="calendar">
+                        <div style="text-align: center; color: var(--text-secondary); padding: 2rem;">
+                            Loading GitHub contributions...
+                        </div>
+                    </div>
                 </div>
 
-                <div id="github-calendar-grid" class="calendar-grid">
-                    <!-- Javascript will inject the 53 weeks here -->
+                <div class="year-selector-col"
+                    style="display: flex; flex-direction: column; gap: 0.5rem; min-width: 100px; margin-top: 1rem;">
+                    <button class="year-btn active" data-year="lastYear"
+                        style="background: var(--accent-primary); color: white; border: none; padding: 0.6rem 1rem; border-radius: var(--radius-md); cursor: pointer; font-family: var(--font-primary); font-size: 0.9rem; transition: all 0.2s ease; text-align: left;">Last
+                        Year</button>
+                    <button class="year-btn" data-year="2026"
+                        style="background: transparent; color: var(--text-secondary); border: none; padding: 0.6rem 1rem; border-radius: var(--radius-md); cursor: pointer; font-family: var(--font-primary); font-size: 0.9rem; transition: all 0.2s ease; text-align: left;">2026</button>
+                    <button class="year-btn" data-year="2025"
+                        style="background: transparent; color: var(--text-secondary); border: none; padding: 0.6rem 1rem; border-radius: var(--radius-md); cursor: pointer; font-family: var(--font-primary); font-size: 0.9rem; transition: all 0.2s ease; text-align: left;">2025</button>
                 </div>
-
-                <div
-                    style="display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;">
-                    <span>Less</span>
-                    <div class="calendar-day level-0"></div>
-                    <div class="calendar-day level-1"></div>
-                    <div class="calendar-day level-2"></div>
-                    <div class="calendar-day level-3"></div>
-                    <div class="calendar-day level-4"></div>
-                    <span>More</span>
-                </div>
-
             </div>
         </div>
     </section>
@@ -213,13 +208,13 @@
     <!-- Footer Component -->
     <global-footer></global-footer>
 
-    <!-- Custom GitHub Calendar Script -->
-    <script src="scripts/github-calendar.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="scripts/components.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/auth.js"></script>
+    <script src="scripts/github-calendar.js?v=2"></script>
 </body>
 
 </html>

@@ -24,24 +24,7 @@ async function initClerk() {
             updateAuthUI(window.Clerk.user);
             protectRoutes(window.Clerk.user);
 
-            // Hide the Clerk Development Mode Badge
-            const hideClerkBadge = () => {
-                const elements = document.querySelectorAll('div, a');
-                for (const el of elements) {
-                    if (el.innerText && el.innerText.includes('Development mode') && el.innerText.toLowerCase().includes('secured by clerk')) {
-                        el.style.display = 'none';
-                    }
-                }
 
-                // Also try common classes
-                const clBadge = document.querySelector('.cl-internal-b3algg, .cl-internal-1dauvpw');
-                if (clBadge) clBadge.style.display = 'none';
-            };
-
-            // Run immediately and also observe for dynamic injection
-            hideClerkBadge();
-            const observer = new MutationObserver(hideClerkBadge);
-            observer.observe(document.body, { childList: true, subtree: true });
 
         } catch (error) {
             console.error('Clerk loading failed:', error);

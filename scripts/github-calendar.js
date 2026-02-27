@@ -361,16 +361,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Legend
         const legend = document.createElement('div');
-        legend.style.cssText = 'display:flex; justify-content:flex-end; align-items:center; gap:5px; margin-top:15px; font-size:12px; color:var(--text-secondary); width:100%; max-width: 800px; margin-left: auto; margin-right: auto; padding-right: 20px; box-sizing: border-box;';
+        legend.style.cssText = 'display:flex; justify-content:flex-end; align-items:center; gap:5px; margin-top:8px; font-size:10px; color:var(--text-secondary); width:100%;';
         legend.innerHTML = `
-                            < span > Less</span >
+            <span>Less</span>
             <div class="contribution-day color-level-0" style="margin: 0 1px;"></div>
             <div class="contribution-day color-level-1" style="margin: 0 1px;"></div>
             <div class="contribution-day color-level-2" style="margin: 0 1px;"></div>
             <div class="contribution-day color-level-3" style="margin: 0 1px;"></div>
             <div class="contribution-day color-level-4" style="margin: 0 1px;"></div>
             <span>More</span>
-                        `;
+        `;
         graphDiv.appendChild(legend);
 
         calendarContainer.appendChild(graphDiv);

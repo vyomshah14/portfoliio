@@ -38,16 +38,26 @@ document.addEventListener('DOMContentLoaded', () => {
         .contribution-graph table {
             border-spacing: 3px;
             border-collapse: separate;
-            font-size: 12px;
+            font-size: 10px;
             color: var(--text-secondary);
-            margin: 0 auto;
+            margin: 0; /* Align left */
         }
         .contribution-graph td {
             position: relative;
+            padding: 0;
+        }
+        .day-label {
+            font-size: 10px;
+            fill: var(--text-secondary);
+            text-anchor: start;
+        }
+        .month-label {
+            font-size: 10px;
+            fill: var(--text-secondary);
         }
         .contribution-day {
-            width: 12px;
-            height: 12px;
+            width: 11px;
+            height: 11px;
             border-radius: 2px;
             cursor: pointer;
             transition: transform 0.1s, box-shadow 0.1s;
@@ -215,33 +225,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateMonthHeaders(weeks) {
         const headers = [];
-        let currentMonth = -1;
-        let weekCount = 0;
+        let lastMonth = -1;
 
-        weeks.forEach((week) => {
+        weeks.forEach((week, index) => {
             if (week.contributionDays.length > 0) {
+                // Look at the first day of the week to decide the month
                 const dayDate = new Date(week.contributionDays[0].date);
-                const monthKey = dayDate.getMonth();
+                const month = dayDate.getUTCMonth();
 
-                if (monthKey !== currentMonth) {
-                    if (currentMonth !== -1) {
-                        headers.push({ month: MONTHS[currentMonth], colspan: weekCount });
-                    }
-                    currentMonth = monthKey;
-                    weekCount = 1;
-                } else {
-                    weekCount++;
+                if (month !== lastMonth) {
+                    headers.push({ month: MONTHS[month], startIndex: index });
+                    lastMonth = month;
                 }
-            } else {
-                weekCount++;
             }
         });
 
-        if (currentMonth !== -1) {
-            headers.push({ month: MONTHS[currentMonth], colspan: weekCount });
+        // Convert to colSpan format
+        const colSpanHeaders = [];
+        for (let i = 0; i < headers.length; i++) {
+            const current = headers[i];
+            const next = headers[i + 1];
+            const colSpan = next ? (next.startIndex - current.startIndex) : (weeks.length - current.startIndex);
+
+            // Only push if colSpan > 0
+            if (colSpan > 0) {
+                colSpanHeaders.push({ month: current.month, colspan: colSpan });
+            }
         }
 
-        return headers;
+        return colSpanHeaders;
     }
 
     function renderGraph(data, targetYearStr) {
@@ -258,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Empty top-left cell for day labels
         const tlCell = document.createElement('td');
-        tlCell.style.minWidth = '30px';
+        tlCell.style.width = '28px'; // Fixed width for day labels
         headerRow.appendChild(tlCell);
 
         const monthHeaders = calculateMonthHeaders(data.weeks);
@@ -267,7 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
             td.colSpan = header.colspan;
             td.textContent = header.month;
             td.style.textAlign = 'left';
-            td.style.paddingBottom = '5px';
+            td.style.paddingBottom = '4px';
+            td.style.fontSize = '10px';
             headerRow.appendChild(td);
         });
         thead.appendChild(headerRow);
@@ -284,9 +297,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (dayIndex === 1 || dayIndex === 3 || dayIndex === 5) {
                 labelTd.textContent = DAYS[dayIndex];
             }
-            labelTd.style.verticalAlign = 'top';
-            labelTd.style.paddingRight = '5px';
-            labelTd.style.lineHeight = '12px'; // Align with cells
+            labelTd.style.fontSize = '10px';
+            labelTd.style.color = 'var(--text-secondary)';
+            labelTd.style.paddingRight = '8px';
+            labelTd.style.textAlign = 'left';
+            labelTd.style.verticalAlign = 'middle';
             tr.appendChild(labelTd);
 
             // Columns (weeks)

@@ -1,12 +1,13 @@
 # Vyom Shah - React Portfolio
 
+🌐 **Live:** [vyom-shah.vercel.app](https://vyom-shah.vercel.app/)
+
 A modern React portfolio for Vyom Shah, built with Vite, React, Framer Motion, React Three Fiber, Three.js, and Drei. The project preserves the original approved visual identity while moving the codebase to a maintainable React-only architecture.
 
 ## Features
 
 - React-only single page app with clean routes
 - Preserved glassmorphism design, typography, colors, spacing, and responsive layout
-- Premium interactive 3D avatar in the hero section
 - Framer Motion hero reveals and subtle UI animation
 - Real GitHub contribution calendar using API/proxy fetches
 - Animated stats, skill bars, project filters, and photography gallery
@@ -19,9 +20,6 @@ A modern React portfolio for Vyom Shah, built with Vite, React, Framer Motion, R
 - Vite
 - React Hooks
 - Framer Motion
-- Three.js
-- React Three Fiber
-- Drei
 - CSS custom properties in `styles/main.css`
 
 ## Project Structure
@@ -125,22 +123,6 @@ Fetch order:
 
 If real data cannot be fetched, the UI shows a load error instead of fake contribution data.
 
-## 3D Avatar
-
-The hero avatar lives in `src/components/AvatarScene.jsx`.
-
-It supports:
-
-- GLB/GLTF model loading
-- Environment lighting
-- Ambient and point lights
-- Contact shadows
-- Floating motion
-- Subtle cursor interaction
-- Responsive canvas sizing
-
-To use a custom avatar model, pass a `modelUrl` to `AvatarScene` or wire a model path from `public/`.
-
 ## Styling
 
 The approved visual system is preserved in `styles/main.css`.
@@ -161,5 +143,6 @@ Important deployment notes:
 
 **Vyom Shah**
 
+- 🌐 Portfolio: [vyom-shah.vercel.app](https://vyom-shah.vercel.app/)
 - GitHub: [@vyomshah14](https://github.com/vyomshah14)
 - LinkedIn: [Vyom Shah](https://www.linkedin.com/in/vyom-shah-007632290/)

@@ -2137,8 +2137,7 @@ section {
 /* Safe Clerk Development Badge Removal */
 /* 1. Hide the fixed bottom floating dev badge */
 #clerk-components>div[style*="position: fixed"][style*="bottom:"],
-div.cl-rootBox+div[style*="position: fixed"],
-div.cl-rootBox+aside {
+div.cl-rootBox+div[style*="position: fixed"][style*="bottom:"] {
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;

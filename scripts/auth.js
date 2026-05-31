@@ -1,25 +1,36 @@
 // scripts/auth.js
 
-// Replace this with your actual Clerk Publishable Key from the Clerk API Dashboard
-const CLERK_PUBLISHABLE_KEY = 'pk_test_ZXRlcm5hbC1za3lsYXJrLTE0LmNsZXJrLmFjY291bnRzLmRldiQ';
+// Replace this with your actual Clerk Publishable Key from the Clerk API Dashboard.
+// You can also override it before this script loads with:
+// <script>window.CLERK_PUBLISHABLE_KEY = 'pk_test_...';</script>
+const CLERK_PUBLISHABLE_KEY =
+    window.CLERK_PUBLISHABLE_KEY || pk_test_ZXRlcm5hbC1za3lsYXJrLTE0LmNsZXJrLmFjY291bnRzLmRldiQ;
+
+const CLERK_SCRIPT_URL = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js';
 
 async function initClerk() {
-    // 1. Direct fallback for local environments (file:// protocol, localhost, or 127.0.0.1)
-    const isLocalEnv = window.location.protocol === 'file:' || 
-                       window.location.hostname === 'localhost' || 
-                       window.location.hostname === '127.0.0.1';
-
-    if (isLocalEnv) {
+    // 1. Direct fallback for file:// protocol (double-clicking index.html/contact.html)
+    if (window.location.protocol === 'file:') {
+        console.warn('Real Clerk sign-in requires http://localhost or a deployed domain. Using mock auth for file://.');
+>>>>>>> 97e2af7 (Sign-in fix')
         initMockAuth();
         return;
     }
 
     // 2. Load the actual Clerk script for local server (localhost) or deployed domains
     const script = document.createElement('script');
+    script.id = 'clerk-js';
     script.setAttribute('data-clerk-publishable-key', CLERK_PUBLISHABLE_KEY);
+    script.type = 'text/javascript';
     script.async = true;
     script.crossOrigin = 'anonymous';
-    script.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js';
+    script.src = CLERK_SCRIPT_URL;
+
+    // Catch script loading error (e.g. adblocker, offline, network block)
+    script.onerror = () => {
+        console.warn('Clerk script failed to load from CDN. Falling back to Mock Auth...');
+        initMockAuth();
+    };
 
     // Catch script loading error (e.g. adblocker, offline, network block)
     script.onerror = () => {
@@ -29,17 +40,17 @@ async function initClerk() {
 
     document.head.appendChild(script);
 
-    // Timeout fallback if script takes too long to load (e.g. 3 seconds)
+    // Timeout fallback if script takes too long to load.
     const loadTimeout = setTimeout(() => {
         if (!window.Clerk || !window.Clerk.loaded) {
             console.warn('Clerk load timeout. Falling back to Mock Auth...');
             initMockAuth();
         }
-    }, 3000);
+    }, 10000);
 
     script.addEventListener('load', async () => {
         try {
-            await window.Clerk.load();
+            await window.Clerk.load({ publishableKey: CLERK_PUBLISHABLE_KEY });
             clearTimeout(loadTimeout);
             window.Clerk.loaded = true; // Mark as successfully loaded
 
@@ -58,6 +69,66 @@ async function initClerk() {
         }
     });
 }
+
+
+function getCurrentUrl() {
+    return `${window.location.origin}${window.location.pathname}${window.location.search}${window.location.hash}`;
+}
+
+function ensureClerkModalRoot() {
+    let modalRoot = document.getElementById('clerk-modal-root');
+    if (!modalRoot) {
+        modalRoot = document.createElement('div');
+        modalRoot.id = 'clerk-modal-root';
+        document.body.appendChild(modalRoot);
+    }
+    return modalRoot;
+}
+
+function openClerkSignIn() {
+    if (!window.Clerk || !window.Clerk.loaded) {
+        console.warn('Clerk is not available yet. Opening local fallback sign-in.');
+        initMockAuth();
+        triggerMockSignIn();
+        return;
+    }
+
+    const redirectUrl = getCurrentUrl();
+
+    try {
+        if (typeof window.Clerk.openSignIn === 'function') {
+            window.Clerk.openSignIn({
+                afterSignInUrl: redirectUrl,
+                afterSignUpUrl: redirectUrl,
+                redirectUrl,
+            });
+            return;
+        }
+
+        if (typeof window.Clerk.mountSignIn === 'function') {
+            window.Clerk.mountSignIn(ensureClerkModalRoot(), {
+                afterSignInUrl: redirectUrl,
+                afterSignUpUrl: redirectUrl,
+                redirectUrl,
+            });
+        }
+    } catch (error) {
+        console.error('Unable to open Clerk sign-in:', error);
+        alert('Sign in could not open. Please check your Clerk allowed origins and publishable key.');
+    }
+}
+
+window.openClerkSignIn = openClerkSignIn;
+
+function bindAuthTriggers() {
+    document.querySelectorAll('[data-auth-trigger]').forEach((trigger) => {
+        trigger.onclick = (event) => {
+            event.preventDefault();
+            openClerkSignIn();
+        };
+    });
+}
+
 
 // ==========================================
 // Mock Authentication System (Fallback Mode)
@@ -470,18 +541,22 @@ function updateAuthUI(user) {
         const userButtonDiv = document.createElement('div');
         userButtonDiv.id = 'user-button';
         authContainer.appendChild(userButtonDiv);
-        window.Clerk.mountUserButton(userButtonDiv);
+        if (window.Clerk && typeof window.Clerk.mountUserButton === 'function') {
+            window.Clerk.mountUserButton(userButtonDiv, {
+                afterSignOutUrl: getCurrentUrl(),
+            });
+        }
     } else {
         // User is signed out
         const signInBtn = document.createElement('button');
         signInBtn.className = 'btn btn-primary';
+        signInBtn.type = 'button';
+        signInBtn.dataset.authTrigger = '';
         signInBtn.style.padding = '0.5rem 1rem';
         signInBtn.style.fontSize = '0.9rem';
         signInBtn.textContent = 'Sign In';
-        signInBtn.onclick = () => {
-            window.Clerk.openSignIn();
-        };
         authContainer.appendChild(signInBtn);
+        bindAuthTriggers();
     }
 }
 
@@ -501,14 +576,26 @@ function protectRoutes(user) {
             // Auto-fill form details if user is signed in
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
-            if (nameInput && user.fullName) nameInput.value = user.fullName;
-            if (emailInput && user.primaryEmailAddress) emailInput.value = user.primaryEmailAddress.emailAddress;
+            const fullName = user.fullName || [user.firstName, user.lastName].filter(Boolean).join(' ');
+            const emailAddress = user.primaryEmailAddress?.emailAddress || user.emailAddresses?.[0]?.emailAddress;
+
+            if (nameInput && fullName) nameInput.value = fullName;
+            if (emailInput && emailAddress) emailInput.value = emailAddress;
         }
     }
 }
 
 // Ensure initClerk runs after custom components are rendered
 window.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', (event) => {
+        const authTrigger = event.target.closest('[data-auth-trigger]');
+        if (!authTrigger) return;
+
+        event.preventDefault();
+        openClerkSignIn();
+    });
+    bindAuthTriggers();
+
     // Wait a brief moment to ensure global-navbar has injected its innerHTML
     setTimeout(initClerk, 100);
 });

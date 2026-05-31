@@ -140,7 +140,7 @@
                         <h3 style="margin-bottom: 0.5rem;">Authentication Required</h3>
                         <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Please sign in to send a message
                             or collaboration request.</p>
-                        <button class="btn btn-primary" onclick="if(window.Clerk) window.Clerk.openSignIn()">Sign In to
+                        <button class="btn btn-primary" id="contactSignInBtn" type="button" data-auth-trigger>Sign In to
                             Contact</button>
                     </div>
                     <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
@@ -191,7 +191,7 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="scripts/components.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/auth.js"></script>
+    <script src="scripts/auth.js?v=6"></script>
 </body>
 
 </html>

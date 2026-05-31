@@ -1,213 +1,165 @@
-# Vyom Shah - Portfolio Website
+# Vyom Shah - React Portfolio
 
-A modern, professional portfolio website showcasing my work as a Software Developer. Built with clean HTML, CSS, and JavaScript featuring a stunning dark mode design with smooth animations and interactive elements.
+A modern React portfolio for Vyom Shah, built with Vite, React, Framer Motion, React Three Fiber, Three.js, and Drei. The project preserves the original approved visual identity while moving the codebase to a maintainable React-only architecture.
 
-## 🌟 Features
+## Features
 
-- **Responsive Design** - Fully responsive across all devices (mobile, tablet, desktop)
-- **Dark Professional Theme** - Modern dark mode with vibrant accent colors
-- **Smooth Animations** - Engaging animations and transitions throughout
-- **Interactive Elements** - Hover effects, scroll animations, and dynamic content
-- **Multi-page Structure** - Organized content across dedicated pages
-- **Contact Form** - Functional contact form for inquiries
-- **SEO Optimized** - Proper meta tags and semantic HTML
-- **Performance Optimized** - Fast loading with optimized assets
+- React-only single page app with clean routes
+- Preserved glassmorphism design, typography, colors, spacing, and responsive layout
+- Premium interactive 3D avatar in the hero section
+- Framer Motion hero reveals and subtle UI animation
+- Real GitHub contribution calendar using API/proxy fetches
+- Animated stats, skill bars, project filters, and photography gallery
+- Contact form wired to Web3Forms
+- Vercel-ready API routes and SPA rewrites
 
-## 📁 Project Structure
+## Tech Stack
 
-```
+- React
+- Vite
+- React Hooks
+- Framer Motion
+- Three.js
+- React Three Fiber
+- Drei
+- CSS custom properties in `styles/main.css`
+
+## Project Structure
+
+```text
 Portfolio website/
-├── index.html          # Home page with hero section
-├── about.html          # About me page
-├── skills.html         # Technical skills showcase
-├── projects.html       # Portfolio projects
-├── experience.html     # Professional experience
-├── education.html      # Education & certifications
-├── contact.html        # Contact form and info
+├── api/
+│   ├── github-calendar-proxy.js
+│   └── github-contributions.js
+├── assets/
+├── public/
+│   ├── assets/
+│   └── Certificate/
+├── src/
+│   ├── components/
+│   │   ├── AnimatedWrapper.jsx
+│   │   ├── AvatarScene.jsx
+│   │   ├── Button.jsx
+│   │   ├── Footer.jsx
+│   │   ├── GlobalBackground.jsx
+│   │   ├── Loader.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── SectionTitle.jsx
+│   │   └── StaticPage.jsx
+│   ├── data/
+│   │   ├── pageMarkup.js
+│   │   ├── photos.js
+│   │   └── renderGithubCalendar.js
+│   ├── hooks/
+│   │   ├── useScrollEffects.js
+│   │   ├── useStaticInteractions.js
+│   │   └── useTheme.js
+│   ├── sections/
+│   │   ├── About.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Education.jsx
+│   │   ├── Experience.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Projects.jsx
+│   │   └── Skills.jsx
+│   ├── styles/
+│   │   └── react.css
+│   ├── App.jsx
+│   └── main.jsx
 ├── styles/
-│   └── main.css       # Main stylesheet
-└── scripts/
-    └── main.js        # JavaScript functionality
+│   └── main.css
+├── index.html
+├── package.json
+├── vercel.json
+└── vite.config.js
 ```
 
-## 🎨 Design Features
+## Getting Started
 
-### Color Scheme
-- Primary Background: `#0a0e27`
-- Accent Colors: `#6366f1` (Indigo) & `#8b5cf6` (Purple)
-- Text: Various shades of gray for hierarchy
+Install dependencies:
 
-### Typography
-- Primary Font: Inter (Google Fonts)
-- Monospace Font: JetBrains Mono (for code snippets)
-
-### Key Sections
-1. **Home** - Animated hero section with code window
-2. **About** - Personal introduction and highlights
-3. **Skills** - Categorized technical skills with progress bars
-4. **Projects** - Filterable project showcase
-5. **Experience** - Timeline of professional experience
-6. **Education** - Academic qualifications and certifications
-7. **Contact** - Contact form and social links
-
-## 🚀 Getting Started
-
-### Local Development
-
-1. Clone or download this repository
-2. Open `index.html` in your web browser
-3. No build process required - pure HTML/CSS/JS!
-
-### Customization
-
-#### Update Personal Information
-- Edit the HTML files to update your name, bio, and content
-- Modify social media links in the navigation and footer
-- Update email address in `contact.html`
-
-#### Customize Colors
-Edit the CSS variables in `styles/main.css`:
-```css
-:root {
-    --accent-primary: #6366f1;
-    --accent-secondary: #8b5cf6;
-    /* ... other variables */
-}
+```bash
+npm install
 ```
 
-#### Add Your Projects
-In `projects.html`, duplicate the `.project-card` structure and update:
-- Project title and description
-- Technology tags
-- Project links (live demo and GitHub)
+Run the development server:
 
-#### Update Experience
-In `experience.html`, modify the timeline items with your work history
-
-## 🔧 Technologies Used
-
-- **HTML5** - Semantic markup
-- **CSS3** - Modern styling with CSS Grid and Flexbox
-- **JavaScript (ES6+)** - Interactive functionality
-- **Google Fonts** - Inter & JetBrains Mono
-- **SVG Icons** - Inline SVG for crisp icons
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## ✨ Interactive Features
-
-- Animated statistics counter
-- Typing effect on hero section
-- Smooth scroll animations
-- Project filtering system
-- Mobile-responsive navigation
-- Form validation and submission
-- Parallax background effects
-- Hover animations on cards and buttons
-
-## 📝 Customization Guide
-
-### Adding New Projects
-
-```html
-<div class="project-card" data-category="web">
-    <div class="project-image">
-        <!-- Add your project image or placeholder -->
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Your Project Name</h3>
-        <p class="project-description">Project description...</p>
-        <div class="project-tech">
-            <span class="tech-tag">Technology 1</span>
-            <span class="tech-tag">Technology 2</span>
-        </div>
-    </div>
-</div>
+```bash
+npm run dev
 ```
 
-### Updating Skills
+Build for production:
 
-Edit the skill categories and percentages in `skills.html`:
-```html
-<div class="skill-item">
-    <div class="skill-info">
-        <span class="skill-name">Your Skill</span>
-        <span class="skill-percentage">90%</span>
-    </div>
-    <div class="skill-bar">
-        <div class="skill-progress" style="width: 90%"></div>
-    </div>
-</div>
+```bash
+npm run build
 ```
 
-## 🌐 Deployment
+Preview the production build:
 
-### GitHub Pages
-1. Push your code to a GitHub repository
-2. Go to Settings > Pages
-3. Select your branch and root folder
-4. Your site will be live at `https://yourusername.github.io/repository-name`
+```bash
+npm run preview
+```
 
-### Netlify
-1. Drag and drop the folder to Netlify
-2. Your site will be deployed instantly
+## Routes
 
-### Vercel
-1. Import your GitHub repository
-2. Deploy with one click
+The app is a React SPA. Vercel rewrites all non-API routes to `index.html`.
 
-## 📧 Contact Form Setup
+- `/`
+- `/about`
+- `/skills`
+- `/projects`
+- `/experience`
+- `/education`
+- `/contact`
 
-The contact form currently uses a simulated submission. To make it functional:
+## GitHub Contributions
 
-1. **Using Formspree:**
-   - Sign up at [formspree.io](https://formspree.io)
-   - Update the form action in `contact.html`
+The contribution calendar fetches real data for `vyomshah14`.
 
-2. **Using EmailJS:**
-   - Sign up at [emailjs.com](https://www.emailjs.com)
-   - Add the EmailJS SDK and configure in `scripts/main.js`
+Fetch order:
 
-3. **Backend API:**
-   - Create your own backend endpoint
-   - Update the fetch URL in `scripts/main.js`
+1. `/api/github-contributions` using GitHub GraphQL when `GITHUB_PAT` is configured.
+2. `/api/github-calendar-proxy` scraping GitHub contribution HTML.
+3. Public CORS HTML proxy fallbacks.
 
-## 🎯 Performance Tips
+If real data cannot be fetched, the UI shows a load error instead of fake contribution data.
 
-- Images are optimized for web
-- CSS and JS are minified for production
-- Lazy loading implemented for images
-- Smooth scroll behavior for better UX
+## 3D Avatar
 
-## 📄 License
+The hero avatar lives in `src/components/AvatarScene.jsx`.
 
-This project is open source and available for personal and commercial use.
+It supports:
 
-## 🤝 Contributing
+- GLB/GLTF model loading
+- Environment lighting
+- Ambient and point lights
+- Contact shadows
+- Floating motion
+- Subtle cursor interaction
+- Responsive canvas sizing
 
-Feel free to fork this project and customize it for your own portfolio!
+To use a custom avatar model, pass a `modelUrl` to `AvatarScene` or wire a model path from `public/`.
 
-## 💡 Future Enhancements
+## Styling
 
-- [ ] Add blog section
-- [ ] Implement light/dark mode toggle
-- [ ] Add more project case studies
-- [ ] Integrate with CMS for easy content updates
-- [ ] Add testimonials section
-- [ ] Implement analytics
+The approved visual system is preserved in `styles/main.css`.
 
-## 👨‍💻 Author
+React-specific compatibility styles and 3D/avatar additions live in `src/styles/react.css`.
+
+## Deployment
+
+This project is configured for Vercel.
+
+Important deployment notes:
+
+- Keep `vercel.json` rewrites so clean SPA routes work.
+- Add `GITHUB_PAT` in Vercel environment variables for the GraphQL contribution endpoint.
+- Public assets are served from `public/`.
+
+## Author
 
 **Vyom Shah**
-- GitHub: [@vyomshah](https://github.com/vyomshah)
-- LinkedIn: [vyomshah](https://linkedin.com/in/vyomshah)
 
----
-
-**Crafted with passion and code** ✨
+- GitHub: [@vyomshah14](https://github.com/vyomshah14)
+- LinkedIn: [Vyom Shah](https://www.linkedin.com/in/vyom-shah-007632290/)

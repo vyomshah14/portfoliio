@@ -2,16 +2,27 @@
   "name": "portfolio-website",
   "version": "1.0.0",
   "description": "A modern, professional portfolio website showcasing my work as a Software Developer. Built with clean HTML, CSS, and JavaScript featuring a stunning dark mode design with smooth animations and interactive elements.",
-  "main": "index.js",
+  "main": "src/main.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "dotenv": "^17.3.1",
-    "vercel": "^50.23.2"
+    "framer-motion": "^12.40.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "three": "^0.184.0",
+    "vercel": "^50.23.2",
+    "vite": "^8.0.14"
   },
   "type": "module"
 }

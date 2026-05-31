@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import AvatarScene from '../components/AvatarScene.jsx';
 import StaticPage from '../components/StaticPage.jsx';
 import { homeRestMarkup } from '../data/pageMarkup.js';
 
@@ -49,15 +48,14 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          <motion.div className="hero-visual hero-avatar-visual" initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}>
-            <AvatarScene />
-            <div className="code-window avatar-code-window" aria-hidden="true">
+          <motion.div className="hero-visual" initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}>
+            <div className="code-window">
               <div className="window-header">
                 <div className="window-dots"><span className="dot dot-red" /><span className="dot dot-yellow" /><span className="dot dot-green" /></div>
                 <span className="window-title">developer.js</span>
               </div>
               <div className="window-content">
-                <pre><code><span className="code-keyword">const</span> <span className="code-variable">developer</span> = {'{'}{'\n'}  <span className="code-property">name</span>: <span className="code-string">'Vyom Shah'</span>,{'\n'}  <span className="code-property">role</span>: <span className="code-string">'Software Developer'</span>,{'\n'}  <span className="code-property">passion</span>: <span className="code-string">'Innovation'</span>{'\n'}{'}'};</code></pre>
+                <pre><code><span className="code-keyword">const</span> <span className="code-variable">developer</span> = {'{'}{'\n'}  <span className="code-property">name</span>: <span className="code-string">'Vyom Shah'</span>,{'\n'}  <span className="code-property">role</span>: <span className="code-string">'Software Developer'</span>,{'\n'}  <span className="code-property">passion</span>: <span className="code-string">'Innovation'</span>,{'\n'}  <span className="code-property">skills</span>: [{'\n'}    <span className="code-string">'Problem Solving'</span>,{'\n'}    <span className="code-string">'Clean Code'</span>,{'\n'}    <span className="code-string">'Scalability'</span>{'\n'}  ],{'\n'}  <span className="code-property">build</span>: <span className="code-keyword">function</span>() {'{'}{'\n'}    <span className="code-keyword">return</span> <span className="code-string">'Amazing Things'</span>;{'\n'}  {'}'}{'\n'}{'}'};</code></pre>
               </div>
             </div>
           </motion.div>

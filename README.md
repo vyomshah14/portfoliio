@@ -1,4 +1,4 @@
-# Vyom Shah - React Portfolio
+# Vyom Shah -  Portfolio
 
 🌐 **Live:** [vyom-shah.vercel.app](https://vyom-shah.vercel.app/)
 

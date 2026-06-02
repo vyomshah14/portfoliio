@@ -30,7 +30,7 @@ export function useStaticInteractions(pageKey, navigate) {
         if (href?.startsWith('#') && href.length > 1) {
           event.preventDefault();
           document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else if (href?.endsWith('.html') || href?.startsWith('/')) {
+        } else if (href?.endsWith('.html') || (href?.startsWith('/') && !link.hasAttribute('download') && !href.endsWith('.pdf'))) {
           event.preventDefault();
           navigate(href);
         }

@@ -31,7 +31,7 @@ export default function Home() {
                 </svg>
               </a>
               <a href="/contact" className="btn btn-secondary">Get In Touch</a>
-              <a href="/Resume.pdf" className="btn btn-secondary resume-btn" download="Vyom_Shah_Resume.pdf">
+              <a href="/vyom-shah.pdf" className="btn btn-secondary resume-btn" download="Vyom_Shah_Resume.pdf">
                 <svg className="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style={{marginRight: '6px'}}>
                   <path d="M10 3V13M10 13L6 9M10 13L14 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M3 15V16C3 16.5523 3.44772 17 4 17H16C16.5523 17 17 16.5523 17 16V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

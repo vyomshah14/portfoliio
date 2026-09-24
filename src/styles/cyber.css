@@ -1,0 +1,311 @@
+/* ===================================
+   PHASE 1: CYBERSECURITY DESIGN SYSTEM
+   =================================== */
+
+:root {
+  /* Core Brand Colors */
+  --bg-primary: #020308;
+  --bg-secondary: #050811;
+  --bg-tertiary: #0A0F1A;
+
+  /* Surfaces & Borders */
+  --surface: rgba(10, 15, 26, 0.75);
+  --surface-strong: rgba(16, 22, 38, 0.9);
+  --border: rgba(0, 229, 255, 0.25);
+  --border-strong: rgba(0, 229, 255, 0.5);
+
+  /* Typography Colors */
+  --text-primary: #F5F7FA;
+  --text-secondary: #A8B0BE;
+  --text-muted: #667085;
+
+  /* Accents */
+  --accent-primary: #00E5FF;
+  --accent-secondary: #00FFA3;
+  --accent-purple: #BD00FF;
+  --accent-glow: rgba(0, 229, 255, 0.45);
+
+  /* Semantic Colors */
+  --warning: #FFB020;
+  --danger: #FF4D67;
+
+  /* Typography */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
+
+  /* Spacing Scale */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-128: 128px;
+}
+
+/* Global Reset & Body Base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #02050c;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at 15% 15%, rgba(0, 229, 255, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 85% 55%, rgba(189, 0, 255, 0.07) 0%, transparent 45%),
+              radial-gradient(circle at 50% 90%, rgba(0, 255, 163, 0.06) 0%, transparent 50%),
+              linear-gradient(180deg, #030712 0%, #02040a 50%, #010206 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+/* ===================================
+   CYBER UI PRIMITIVES & 3D EFFECTS
+   =================================== */
+
+/* 5.5-Second 3D Spin Animation Keyframes */
+@keyframes spinCard3D {
+  0%   { transform: perspective(1000px) rotateY(0deg) scale(1.08); }
+  80%  { transform: perspective(1000px) rotateY(1800deg) scale(1.08); }
+  100% { transform: perspective(1000px) rotateY(2160deg) scale(1); }
+}
+
+.is-spinning-3d {
+  animation: spinCard3D 5.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 0 60px rgba(0, 229, 255, 0.7), 0 0 100px rgba(0, 255, 163, 0.5), inset 0 0 30px rgba(0, 229, 255, 0.6) !important;
+  border-color: #00E5FF !important;
+  z-index: 50 !important;
+}
+
+/* CyberButton */
+.cyber-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-12) var(--space-24);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--accent-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-btn-primary {
+  background: rgba(0, 229, 255, 0.08);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.cyber-btn-primary:hover {
+  background: rgba(0, 229, 255, 0.22);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.6), 0 0 60px rgba(0, 229, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  color: #FFF;
+}
+
+.cyber-btn-secondary {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  background: rgba(10, 15, 26, 0.6);
+}
+
+.cyber-btn-secondary:hover {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+  box-shadow: 0 0 20px rgba(0, 255, 163, 0.3);
+  transform: translateY(-2px);
+}
+
+/* CyberCard Container & Base */
+.cyber-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-24);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+/* Illuminated Cyber HUD Corner Brackets ┌ ┐ └ ┘ */
+.cyber-card::before,
+.project-3d-card::before,
+.skill-card-3d::before,
+.journey-3d-card::before,
+.experience-3d-card::before,
+.academic-3d-card::before,
+.cert-3d-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--accent-primary);
+  border-left: 2px solid var(--accent-primary);
+  border-top-left-radius: 4px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.cyber-card::after,
+.project-3d-card::after,
+.skill-card-3d::after,
+.journey-3d-card::after,
+.experience-3d-card::after,
+.academic-3d-card::after,
+.cert-3d-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  border-bottom: 2px solid var(--accent-primary);
+  border-right: 2px solid var(--accent-primary);
+  border-bottom-right-radius: 4px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.cyber-card-hover:hover {
+  border-color: var(--accent-primary);
+  background: var(--surface-strong);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 255, 0.25);
+}
+
+/* StatusBadge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+  animation: pulseDot 2s ease infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.status-active { color: var(--accent-secondary); border-color: rgba(0, 255, 163, 0.4); }
+.status-warning { color: var(--warning); border-color: rgba(255, 176, 32, 0.4); }
+.status-danger { color: var(--danger); border-color: rgba(255, 77, 103, 0.4); }
+.status-default { color: var(--text-muted); }
+
+/* TechBadge */
+.tech-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(0, 229, 255, 0.2);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* SectionHeader HUD Branding */
+.cyber-section-header {
+  margin-bottom: var(--space-48);
+  position: relative;
+}
+
+.cyber-section-number {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-secondary);
+  margin-bottom: var(--space-8);
+  letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cyber-section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+}
+
+.cyber-section-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin: 0;
+  color: #FFF;
+  text-transform: uppercase;
+  text-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+  position: relative;
+}
+
+.cyber-section-divider {
+  flex-grow: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), transparent);
+  box-shadow: 0 0 12px var(--accent-primary);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

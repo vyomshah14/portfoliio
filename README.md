@@ -1,54 +1,54 @@
-# 🚀 Vyom Shah — Interactive Cyber-Themed 3D Portfolio
+# Vyom Shah — Interactive Cyber-Themed 3D Portfolio
 
-[![Live Demo](https://img.shields.io/badge/Live-vyom--shah.vercel.app-00FFA3?style=for-the-badge&logo=vercel&logoColor=black)](https://vyom-shah.vercel.app/)
-[![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Three.js](https://img.shields.io/badge/Three.js-WebGL-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
-[![GSAP](https://img.shields.io/badge/GSAP-Animations-88CE02?style=for-the-badge&logo=greensock&logoColor=black)](https://greensock.com/gsap/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-vyom--shah.vercel.app-00FFA3?style=for-the-badge&logo=vercel&logoColor=000000&labelColor=0d1117)](https://vyom-shah.vercel.app/)
+[![React](https://img.shields.io/badge/React-v19.0-00E5FF?style=for-the-badge&logo=react&logoColor=00E5FF&labelColor=0d1117)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-v8.0-7C4DFF?style=for-the-badge&logo=vite&logoColor=7C4DFF&labelColor=0d1117)](https://vitejs.dev/)
+[![Three.js](https://img.shields.io/badge/Three.js-WebGL-00FFA3?style=for-the-badge&logo=three.js&logoColor=00FFA3&labelColor=0d1117)](https://threejs.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-Animations-00E5FF?style=for-the-badge&logo=greensock&logoColor=00E5FF&labelColor=0d1117)](https://greensock.com/gsap/)
 
 A high-performance, interactive, cybersecurity-themed 3D developer portfolio for **Vyom Shah**. Built with **React 19**, **Vite 8**, **Three.js**, **React Three Fiber**, **Drei**, **GSAP**, and **Framer Motion**, this portfolio combines real-time 3D WebGL graphics, futuristic cyber-HUD widgets, interactive security tools, and smooth section transitions.
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
-### 💻 1. Interactive Boot Terminal (`BootScreen` & `LetterGlitch`)
+### 1. Interactive Boot Terminal (`BootScreen` & `LetterGlitch`)
 - Fullscreen ASCII / matrix letter glitch background effect on initialization.
 - Interactive terminal boot sequence allowing visitors to enter their custom handle/alias, personalizing their session across the site.
 - Stored session state preventing repetitive boot screens during navigation.
 
-### 🌐 2. 3D WebGL Canvas & Interactive Nodes (`HeroScene` & Three.js)
+### 2. 3D WebGL Canvas & Interactive Nodes (`HeroScene` & Three.js)
 - Built with **React Three Fiber** and **@react-three/drei**.
 - Dynamic 3D cyber core, orbital particle rings, ambient lighting, and camera position transitions mapped to scroll sections.
 - Clickable 3D project & journey nodes in the WebGL scene that trigger interactive overlay cards.
 - Canvas-based 3D Cyber Matrix background grid (`Interactive3DCyberMatrix`).
 
-### 🛡️ 3. Built-In Cybersecurity Tooling Suite
-- **🔐 Password Hash & Entropy Analyzer (`PasswordHashTool`)**: Real-time hash generation (SHA-256, MD5, SHA-512, bcrypt simulation) with password entropy evaluation, crack time estimation, and breach checks.
-- **🛰️ Network Topology Scanner (`NetworkTopologyScanner`)**: Interactive subnet and port scanner displaying live port vulnerability statuses and topology diagrams.
-- **🗺️ Global Cyber Threat Map (`CyberThreatMap`)**: Node map displaying active simulated security events and node connections.
-- **🚩 Interactive CTF Hack Challenge (`CyberHackChallenge`)**: Capture-The-Flag challenge modal triggered directly from the terminal or quick action buttons.
+### 3. Built-In Cybersecurity Tooling Suite
+- **Password Hash & Entropy Analyzer (`PasswordHashTool`)**: Real-time hash generation (SHA-256, MD5, SHA-512, bcrypt simulation) with password entropy evaluation, crack time estimation, and breach checks.
+- **Network Topology Scanner (`NetworkTopologyScanner`)**: Interactive subnet and port scanner displaying live port vulnerability statuses and topology diagrams.
+- **Global Cyber Threat Map (`CyberThreatMap`)**: Node map displaying active simulated security events and node connections.
+- **Interactive CTF Hack Challenge (`CyberHackChallenge`)**: Capture-The-Flag challenge modal triggered directly from the terminal or quick action buttons.
 
-### 📊 4. Real-Time Security HUD & Overlay Widgets
-- **📡 Hex Stream Inspector (`HexStreamWidget`)**: Fixed bottom-right live network packet stream inspector.
-- **🛡️ SOC Audit Logs HUD (`SecurityLogsHUD`)**: Fixed bottom-left rolling security audit and intrusion log stream.
-- **🎯 Custom Cyber Reticle Cursor (`CyberCursor`)**: Reticle target tracking cursor with contextual hover animations.
+### 4. Real-Time Security HUD & Overlay Widgets
+- **Hex Stream Inspector (`HexStreamWidget`)**: Fixed bottom-right live network packet stream inspector.
+- **SOC Audit Logs HUD (`SecurityLogsHUD`)**: Fixed bottom-left rolling security audit and intrusion log stream.
+- **Custom Cyber Reticle Cursor (`CyberCursor`)**: Reticle target tracking cursor with contextual hover animations.
 
-### 📈 5. Live GitHub Contribution Calendar
+### 5. Live GitHub Contribution Calendar
 - Fetches live contribution data for GitHub user `@vyomshah14`.
 - Multi-tier fetch pipeline:
   1. Primary: Vercel GraphQL API route (`/api/github-contributions`) with GitHub Personal Access Token authentication.
   2. Secondary: Scraping proxy route (`/api/github-calendar-proxy`).
   3. Fallback handling for seamless UX when offline or rate-limited.
 
-### 🎨 6. Futuristic Glassmorphic Design System
+### 6. Futuristic Glassmorphic Design System
 - Dark mode glassmorphic UI components with glowing neon accents (`#00FFA3`, `#00E5FF`, `#BD00FF`).
 - Smooth GSAP ScrollTrigger animations, section tracking, and Framer Motion reveal effects.
 - Fully responsive layout supporting mobile, tablet, and desktop screens.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Core Framework**: [React 19](https://react.dev/), [React DOM 19](https://react.dev/)
 - **Build Tool**: [Vite 8](https://vitejs.dev/)
@@ -61,7 +61,7 @@ A high-performance, interactive, cybersecurity-themed 3D developer portfolio for
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 Portfolio website/
@@ -131,7 +131,7 @@ Portfolio website/
 
 ---
 
-## ⚡ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -159,7 +159,7 @@ Portfolio website/
 
 ---
 
-## 📜 Available Scripts
+## Available Scripts
 
 | Command | Action |
 | :--- | :--- |
@@ -169,7 +169,7 @@ Portfolio website/
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 To enable real-time GitHub GraphQL calendar fetching, create a `.env.local` file in the root directory:
 
@@ -182,7 +182,7 @@ GITHUB_PAT=your_github_personal_access_token
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 This project is optimized for deployment on **Vercel**.
 
@@ -203,17 +203,17 @@ This project is optimized for deployment on **Vercel**.
 
 ---
 
-## 👤 Author
+## Author
 
 **Vyom Shah**  
 *Software Engineer & Cybersecurity Enthusiast*
 
-- 🌐 **Portfolio**: [vyom-shah.vercel.app](https://vyom-shah.vercel.app/)
-- 🐙 **GitHub**: [@vyomshah14](https://github.com/vyomshah14)
-- 💼 **LinkedIn**: [Vyom Shah](https://www.linkedin.com/in/vyom-shah-007632290/)
+- **Portfolio**: [vyom-shah.vercel.app](https://vyom-shah.vercel.app/)
+- **GitHub**: [@vyomshah14](https://github.com/vyomshah14)
+- **LinkedIn**: [Vyom Shah](https://www.linkedin.com/in/vyom-shah-007632290/)
 
 ---
 
-## 📄 License
+## License
 
 This project is open source and available under the [ISC License](LICENSE).
